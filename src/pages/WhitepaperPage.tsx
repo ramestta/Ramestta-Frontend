@@ -241,39 +241,33 @@ const WhitepaperPage: React.FC = () => {
             </article>
 {/* Prev/Next Buttons - Fixed Bottom, Compact & Responsive */}
 <div
-  className={`fixed bottom-0  left-0 right-0 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 px-2 sm:px-4 py-2 sm:py-3 bg-black border-t border-gray-800 shadow-lg transition-all duration-300 z-50 xl:left-80 xl:w-[calc(100%-20rem)]`}
+  className={`fixed bottom-0 left-0 right-0 flex flex-row items-center justify-center gap-3 sm:gap-4 px-3 sm:px-4 py-2 sm:py-3 bg-black border-t border-gray-800 shadow-lg transition-all duration-300 z-50 xl:left-80 xl:w-[calc(100%-20rem)]`}
   style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
 >
   {/* Previous Button */}
   {prev ? (
     <button
       onClick={() => handleSectionClick(prev.id)}
-      className="w-[200px] mb-4  flex items-center justify-evenly gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 bg-gray-800 rounded-full text-white font-medium shadow-md hover:shadow-lg hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-900 transition-all duration-300 group text-xs sm:text-sm"
+      className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-gray-800 rounded-full text-white font-medium shadow-md hover:shadow-lg hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-900 transition-all duration-300 group text-xs sm:text-sm"
     >
       <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary-400 group-hover:-translate-x-1 transition-transform duration-300" />
-      <div className="flex flex-col text-left flex-shrink">
-        <span className="text-[15px] sm:text-[20px] text-gray-400">Previous</span>
-        {/* <span className="font-semibold text-white truncate">{prev.title}</span> */}
-      </div>
+      <span className="text-[12px] sm:text-[14px] text-gray-300">Previous</span>
     </button>
   ) : (
-    <div className="w-full sm:w-[45%]" />
+    <div className="w-20 sm:w-28" />
   )}
 
   {/* Next Button */}
   {next ? (
     <button
       onClick={() => handleSectionClick(next.id)}
-      className="w-[200px] mb-4 flex items-center justify-evenly gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 bg-gradient-to-r from-primary-600 to-primary-500 rounded-full text-white font-medium shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 group text-xs sm:text-sm"
+      className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-primary-600 to-primary-500 rounded-full text-white font-medium shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 group text-xs sm:text-sm"
     >
-      <div className="flex flex-col text-right flex-shrink">
-        <span className="text-[15px] sm:text-[20px] text-primary-200">Next</span>
-        {/* <span className="font-semibold text-white truncate">{next.title}</span> */}
-      </div>
+      <span className="text-[12px] sm:text-[14px] text-primary-100">Next</span>
       <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
     </button>
   ) : (
-    <div className="w-full sm:w-[45%]" />
+    <div className="w-20 sm:w-28" />
   )}
 </div>
 

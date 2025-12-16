@@ -230,23 +230,23 @@ const HomePage: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Institutional-Grade Network Parameters</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-300">Production-ready specifications for enterprise deployment</p>
           </div>
-          <div className="max-w-4xl mx-auto px-4">
+          <div className="max-w-4xl mx-auto px-2 sm:px-4">
             <div className="bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-gray-700 overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+              <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+                <table className="w-full border-collapse min-w-[500px]">
                   <thead>
                     <tr className="bg-gradient-to-r from-gray-800 to-gray-900 border-b-2 border-gray-600">
-                      <th className="text-left py-5 px-6 sm:px-8 text-base sm:text-lg font-bold text-white tracking-wide border-r border-gray-700">Parameter</th>
-                      <th className="text-left py-5 px-6 sm:px-8 text-base sm:text-lg font-bold text-white tracking-wide">Value</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-8 text-sm sm:text-lg font-bold text-white tracking-wide border-r border-gray-700 whitespace-nowrap">Parameter</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-8 text-sm sm:text-lg font-bold text-white tracking-wide whitespace-nowrap">Value</th>
                     </tr>
                   </thead>
                   <tbody>
                     {networkStats.map((stat, index) => (
                       <tr key={index} className="border-b border-gray-700 hover:bg-gray-800/50 transition-all duration-200 group">
-                        <td className="py-4 px-6 sm:px-8 font-semibold text-gray-200 text-sm sm:text-base group-hover:text-white transition-colors border-r border-gray-700">
+                        <td className="py-3 sm:py-4 px-4 sm:px-8 font-semibold text-gray-200 text-xs sm:text-base group-hover:text-white transition-colors border-r border-gray-700 whitespace-nowrap">
                           {stat.label}
                         </td>
-                        <td className="py-4 px-6 sm:px-8 text-primary-400 font-mono text-sm sm:text-base font-medium group-hover:text-primary-300 transition-colors">
+                        <td className="py-3 sm:py-4 px-4 sm:px-8 text-primary-400 font-mono text-xs sm:text-base font-medium group-hover:text-primary-300 transition-colors whitespace-nowrap">
                           {stat.value}
                         </td>
                       </tr>
