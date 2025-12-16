@@ -176,7 +176,7 @@ const RamaPayPage: React.FC = () => {
           
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            RamaPay
+            <span style={{ fontFamily: 'Zilap-Orion, sans-serif' }} className="tracking-wider">RAMAPAY</span>
             <span className="block text-gradient mt-1 sm:mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               The Official Ramestta Wallet
             </span>
