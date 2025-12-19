@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
+import ramaPayWalletLogo from '../assets/RamaPay Wallet.png';
 import { breadcrumbSchema } from '../utils/structuredData';
 
 const RamaPayPage: React.FC = () => {
@@ -172,7 +173,7 @@ const RamaPayPage: React.FC = () => {
           {/* Logo */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <img 
-              src="/src/assets/RamaPay Wallet.png" 
+              src={ramaPayWalletLogo} 
               alt="RamaPay Wallet Logo" 
               className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-2xl"
             />
@@ -932,7 +933,7 @@ const RamaPayPage: React.FC = () => {
             {/* Android */}
             <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-5 sm:p-6">
               <img 
-                src="/src/assets/RamaPay Wallet.png" 
+                src={ramaPayWalletLogo} 
                 alt="RamaPay Wallet Logo" 
                 className="w-10 h-10 mx-auto mb-3 object-contain"
               />
