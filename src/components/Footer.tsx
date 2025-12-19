@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Github, Twitter, MessageCircle, Mail, Instagram, Facebook } from 'lucide-react';
 import { useAppKit, useAppKitAccount } from '@reown/appkit/react';
 import { useChainId, useSwitchChain } from 'wagmi';
-import ramaLogo from '../assets/rama_logo.png';
+import ramaLogo from '../assets/RamaPay.png';
 
 const Footer: React.FC = () => {
   const productLinks = [

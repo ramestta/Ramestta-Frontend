@@ -169,9 +169,11 @@ const RamaPayPage: React.FC = () => {
         <div className="max-w-7xl mx-auto text-center relative z-10">
           {/* Logo */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-purple-500 to-primary-500 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl">
-              <Wallet className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white" />
-            </div>
+            <img 
+              src="/src/assets/RamaPay Wallet.png" 
+              alt="RamaPay Wallet Logo" 
+              className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-2xl"
+            />
           </div>
           
           {/* Title */}
@@ -191,13 +193,15 @@ const RamaPayPage: React.FC = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
             <a
-              href="https://github.com/obidua/RamaPay-android/releases"
+              href="https://play.google.com/store/apps/details?id=io.ramestta.wallet"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg text-sm sm:text-base"
             >
-              <Download className="mr-2" size={18} />
-              Download for Android
+              <svg className="mr-2" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+              </svg>
+              Download from Play Store
             </a>
             <a
               href="https://github.com/obidua/RamaPay-android"
@@ -803,17 +807,23 @@ const RamaPayPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {/* Android */}
             <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-5 sm:p-6">
-              <Smartphone className="text-primary-400 mx-auto mb-3" size={40} />
+              <img 
+                src="/src/assets/RamaPay Wallet.png" 
+                alt="RamaPay Wallet Logo" 
+                className="w-10 h-10 mx-auto mb-3 object-contain"
+              />
               <h3 className="text-lg sm:text-xl font-bold text-white mb-1">Android</h3>
               <p className="text-gray-400 text-xs sm:text-sm mb-4">v3.89 • Android 7.0+</p>
               <a
-                href="https://github.com/obidua/RamaPay-android/releases"
+                href="https://play.google.com/store/apps/details?id=io.ramestta.wallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-500 text-white font-bold rounded-lg hover:bg-primary-600 transition-colors text-sm"
               >
-                <Download className="mr-2" size={16} />
-                Download APK
+                <svg className="mr-2" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+                </svg>
+                Download from Play Store
               </a>
             </div>
             
@@ -862,13 +872,15 @@ const RamaPayPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <a
-              href="https://github.com/obidua/RamaPay-android/releases"
+              href="https://play.google.com/store/apps/details?id=io.ramestta.wallet"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg text-sm sm:text-base"
             >
-              <Download className="mr-2" size={18} />
-              Download Now
+              <svg className="mr-2" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+              </svg>
+              Download from Play Store
             </a>
             <a
               href="https://github.com/obidua/RamaPay-android"
