@@ -19,6 +19,7 @@ const BottomNav: React.FC = () => {
   ];
 
   const resourcesItems = [
+    { name: 'RamaPay', href: '/ramapay' },
     { name: 'Whitepaper', href: '/whitepaper' },
     { name: 'Developers', href: '/developers' },
     { name: 'Validator', href: '/validator' },

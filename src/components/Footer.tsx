@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
 
   const socialLinks = [
     { name: 'Twitter', href: 'https://x.com/ramestta', icon: Twitter },
-    { name: 'GitHub', href: 'https://github.com/Ramestta-Blockchain/', icon: Github },
+    { name: 'GitHub', href: 'https://github.com/ramestta', icon: Github },
     { name: 'Instagram', href: 'https://www.instagram.com/ramestta/', icon: Instagram },
     { name: 'Facebook', href: 'https://www.facebook.com/Ramestta/', icon: Facebook },
     { name: 'Telegram', href: '#', icon: MessageCircle },
