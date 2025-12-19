@@ -3,7 +3,8 @@ import {
   Wallet, Shield, Smartphone, Key, Users, Layers, Globe, 
   Lock, Zap, Code, ChevronDown, ChevronRight, CheckCircle, 
   AlertTriangle, Download, ExternalLink, Server, Cpu, 
-  Leaf, DollarSign, Vote, Network, Copy, Check, Menu, X
+  Leaf, DollarSign, Vote, Network, Copy, Check, Menu, X,
+  QrCode, Store, Clock, Receipt, CreditCard, History
 } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
@@ -23,7 +24,7 @@ const RamaPayPage: React.FC = () => {
   // Track scroll position for active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['introduction', 'features', 'networks', 'hdwallet', 'walletmanagement', 'subaccounts', 'security', 'pos', 'dapp', 'download'];
+      const sections = ['introduction', 'features', 'networks', 'hdwallet', 'walletmanagement', 'subaccounts', 'security', 'pos', 'pointofsale', 'dapp', 'download'];
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -66,6 +67,7 @@ const RamaPayPage: React.FC = () => {
     { id: 'subaccounts', label: 'Accounts', fullLabel: 'Master & Sub-Accounts', icon: Layers },
     { id: 'security', label: 'Security', fullLabel: 'Security Features', icon: Shield },
     { id: 'pos', label: 'PoS', fullLabel: 'Proof of Stake', icon: Cpu },
+    { id: 'pointofsale', label: 'POS', fullLabel: 'Point of Sale', icon: Store },
     { id: 'dapp', label: 'dApps', fullLabel: 'dApp Browser', icon: Code },
     { id: 'download', label: 'Download', fullLabel: 'Download', icon: Download },
   ];
@@ -748,7 +750,129 @@ const RamaPayPage: React.FC = () => {
                 <h4 className="text-sm sm:text-base font-bold text-white mb-1">{item.title}</h4>
                 <p className="text-gray-400 text-xs">{item.desc}</p>
               </div>
-            ))}
+            ))}n          </div>
+        </div>
+      </section>
+
+      {/* Point of Sale Section */}
+      <section id="pointofsale" className="py-12 sm:py-16 md:py-20 px-4 bg-black relative">
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="flex justify-center mb-4">
+            <div className="bg-gradient-to-br from-yellow-500 to-primary-500 p-3 rounded-2xl">
+              <Store className="w-8 h-8 text-white" />
+            </div>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-4 text-center">
+            Point of Sale <span className="text-gradient">(POS)</span>
+          </h2>
+          <p className="text-gray-400 text-center mb-8 sm:mb-12 text-sm sm:text-base max-w-2xl mx-auto">
+            Accept crypto payments for your business with real-time fiat conversion and QR code generation
+          </p>
+          
+          {/* How it Works */}
+          <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/50 border border-gray-700 rounded-2xl p-6 sm:p-8 mb-8">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-6 text-center">How It Works</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { step: '1', icon: DollarSign, title: 'Enter Amount', desc: 'Input fiat amount (USD, EUR, INR, etc.)' },
+                { step: '2', icon: Zap, title: 'Live Conversion', desc: 'Auto-converts to RAMA at live rates' },
+                { step: '3', icon: QrCode, title: 'Generate QR', desc: 'Customer scans QR to pay' },
+                { step: '4', icon: CheckCircle, title: 'Instant Payment', desc: 'Receive RAMA in your wallet' },
+              ].map((item, index) => (
+                <div key={index} className="relative">
+                  <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 text-center h-full">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                      {item.step}
+                    </div>
+                    <item.icon className="text-primary-400 mx-auto mb-3 mt-2" size={28} />
+                    <h4 className="text-white font-semibold text-sm mb-1">{item.title}</h4>
+                    <p className="text-gray-400 text-xs">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
+            {/* Payment Categories */}
+            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center">
+                <Receipt className="text-primary-400 mr-2" size={20} />
+                Payment Categories
+              </h3>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  '🛒 Grocery', '🍽️ Food & Dining', '🛍️ Daily Needs', '💊 Pharmacy',
+                  '📝 Stationary', '⛽ Fuel/Petrol', '🚗 Transport', '🅿️ Parking',
+                  '🏠 Rent', '💡 Electricity', '💧 Water Bill', '🔥 Gas Bill',
+                  '📶 Internet', '📱 Mobile', '🎒 School Fee', '🎓 College'
+                ].map((category, index) => (
+                  <div key={index} className="bg-gray-800/50 rounded-lg px-2 py-1.5 text-center">
+                    <span className="text-gray-300 text-xs">{category}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Key Features */}
+            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center">
+                <Zap className="text-yellow-400 mr-2" size={20} />
+                Key Features
+              </h3>
+              <div className="space-y-3">
+                {[
+                  { title: 'Real-time Fiat Conversion', desc: 'Live exchange rates for accurate pricing', icon: DollarSign },
+                  { title: 'Multi-Currency Support', desc: 'Accept payments in USD, EUR, INR & more', icon: CreditCard },
+                  { title: 'QR Code Generation', desc: 'Instant payment QR with invoice details', icon: QrCode },
+                  { title: 'Transaction History', desc: 'Complete payment records with status', icon: History },
+                  { title: '5-Minute Timer', desc: 'Rate lock during payment window', icon: Clock },
+                  { title: 'Offline Storage', desc: 'All data stored locally on device', icon: Shield },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <item.icon className="text-primary-400 flex-shrink-0 mt-0.5" size={16} />
+                    <div>
+                      <span className="text-white text-sm font-medium">{item.title}</span>
+                      <p className="text-gray-400 text-xs">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Business Profile */}
+          <div className="bg-gradient-to-r from-purple-900/30 to-primary-900/30 border border-gray-700 rounded-xl p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-white mb-4 text-center">Business Profile Setup</h3>
+            <p className="text-gray-400 text-center text-sm mb-4">
+              Set up your merchant profile with business details, contact info, and custom logo for professional invoices
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { label: 'Business Name', icon: Store },
+                { label: 'Business Type', icon: Receipt },
+                { label: 'Contact Info', icon: Smartphone },
+                { label: 'Custom Logo', icon: CheckCircle },
+              ].map((item, index) => (
+                <div key={index} className="bg-gray-800/50 rounded-lg p-3 text-center">
+                  <item.icon className="text-primary-400 mx-auto mb-2" size={20} />
+                  <span className="text-gray-300 text-xs">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Privacy Notice */}
+          <div className="mt-6 bg-green-900/20 border border-green-800/50 rounded-xl p-4 flex items-start space-x-3">
+            <Shield className="text-green-400 flex-shrink-0 mt-0.5" size={20} />
+            <div>
+              <h4 className="text-green-400 font-semibold text-sm mb-1">100% Privacy Focused</h4>
+              <p className="text-gray-400 text-xs">
+                All transaction data, business profile, and payment history are stored locally on your device. 
+                No data is uploaded to any server - your business data stays with you.
+              </p>
+            </div>
           </div>
         </div>
       </section>
