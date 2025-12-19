@@ -14,7 +14,7 @@ import {
   getSectionById,
 } from "../data/whitepaperData";
 import SEO from "../components/SEO";
-import ramaLogo from "../assets/rama_logo.png";
+import ramaLogo from '../assets/RamaPay.png';
 
 const WhitepaperPage: React.FC = () => {
   const { sectionId } = useParams<{ sectionId?: string }>();
