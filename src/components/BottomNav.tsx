@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Layers, Zap, BookOpen, MoreHorizontal, X, ChevronRight, LogOut } from 'lucide-react';
 import { useAuthStore } from '../store/store';
-import ramaLogo from '../assets/rama_logo.png';
+import ramaLogo from '../assets/RamaPay.png';
 
 const BottomNav: React.FC = () => {
   const [isMoreOpen, setIsMoreOpen] = useState(false);

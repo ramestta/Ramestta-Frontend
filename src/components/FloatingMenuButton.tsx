@@ -22,7 +22,7 @@ import {
   Wallet
 } from 'lucide-react';
 import { useAuthStore } from '../store/store';
-import ramaLogo from '../assets/rama_logo.png';
+import ramaLogo from '../assets/RamaPay.png';
 
 const FloatingMenuButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

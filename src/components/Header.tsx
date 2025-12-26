@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ramaLogo from '../assets/rama_logo.png';
+import ramaLogo from '../assets/RamaPay.png';
 
 const Header: React.FC = () => {
 

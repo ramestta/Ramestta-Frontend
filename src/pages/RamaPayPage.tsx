@@ -9,6 +9,8 @@ import {
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
 import { breadcrumbSchema } from '../utils/structuredData';
+import ramaPayLogo from '../assets/RamaPay.png';
+import ramaPayWalletLogo from '../assets/RamaPay Wallet.png';
 
 const RamaPayPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('introduction');
@@ -172,7 +174,7 @@ const RamaPayPage: React.FC = () => {
           {/* Logo */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <img 
-              src="/src/assets/RamaPay Wallet.png" 
+              src={ramaPayWalletLogo} 
               alt="RamaPay Wallet Logo" 
               className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-2xl"
             />

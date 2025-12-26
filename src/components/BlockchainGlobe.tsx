@@ -1,5 +1,5 @@
 import React from 'react';
-import ramaLogo from '../assets/rama_logo.png';
+import ramaLogo from '../assets/RamaPay.png';
 
 
 
