@@ -1,18 +1,41 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Clickjacking Protection: Frame-busting script -->
+    <!-- Security Headers as Meta Tags (fallback if server headers fail) -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Clickjacking Protection: Frame-busting script (multiple layers) -->
     <style id="antiClickjack">body{display:none !important;}</style>
     <script>
-      // Prevent clickjacking by checking if page is in an iframe
-      if (self === top) {
-        // Not in a frame, remove the hiding style
+      // Enhanced clickjacking protection with multiple techniques
+      (function() {
+        // Technique 1: Check if page is in an iframe and break out
+        if (self !== top) {
+          try {
+            // Try to break out of the frame
+            top.location.href = self.location.href;
+          } catch (e) {
+            // If cross-origin, hide content completely
+            document.documentElement.style.display = 'none';
+            document.body.style.display = 'none';
+            return;
+          }
+        }
+        
+        // Technique 2: Remove the hiding style if not in frame
         var antiClickjack = document.getElementById('antiClickjack');
         if (antiClickjack) antiClickjack.remove();
-      } else {
-        // In a frame, try to break out
-        top.location = self.location;
-      }
+        
+        // Technique 3: Continuous monitoring for frame embedding attempts
+        setInterval(function() {
+          if (self !== top) {
+            document.documentElement.style.display = 'none';
+          }
+        }, 100);
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

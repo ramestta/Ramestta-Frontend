@@ -2,6 +2,54 @@ import { create } from 'zustand';
 
 const BASE_URL = "https://newapi.ramestta.com";
 
+// Security utility functions
+const secureStorage = {
+  setItem: (key: string, value: string) => {
+    try {
+      // In production, consider using httpOnly cookies for tokens
+      sessionStorage.setItem(key, value);
+    } catch (e) {
+      console.error('Storage error:', e);
+    }
+  },
+  getItem: (key: string): string | null => {
+    try {
+      return sessionStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  },
+  clear: () => {
+    try {
+      sessionStorage.clear();
+    } catch (e) {
+      console.error('Storage clear error:', e);
+    }
+  }
+};
+
+// Input sanitization to prevent XSS
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/[<>"'&]/g, (char) => {
+      const entities: Record<string, string> = {
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        '&': '&amp;'
+      };
+      return entities[char] || char;
+    })
+    .trim();
+};
+
+// Email validation
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 254;
+};
+
 type Permissions = {
     postBlog?: boolean;
     replyMessage?: boolean;
@@ -31,9 +79,9 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
-    userToken: localStorage.getItem('userToken'),
-    userId: localStorage.getItem('userId'),
-    isAdmin: localStorage.getItem('isAdmin') === 'true',
+    userToken: secureStorage.getItem('userToken'),
+    userId: secureStorage.getItem('userId'),
+    isAdmin: secureStorage.getItem('isAdmin') === 'true',
     permissions: null,
     isLoading: false,
     error: null,
@@ -47,18 +95,40 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     loginAdmin: async (email, password) => {
         set({ isLoading: true, error: null });
+        
+        // Input validation
+        if (!isValidEmail(email)) {
+            set({ error: 'Invalid email format', isLoading: false });
+            return;
+        }
+        if (!password || password.length < 8) {
+            set({ error: 'Password must be at least 8 characters', isLoading: false });
+            return;
+        }
+        
         try {
             const res = await fetch(`${BASE_URL}/admin/login`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // CSRF protection
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify({ 
+                    email: sanitizeInput(email), 
+                    password // Don't sanitize password as it may contain special chars
+                })
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.message || 'Admin login failed');
 
-            localStorage.setItem('userToken', data.token);
-            localStorage.setItem('isAdmin', 'true');
+            // Validate token format before storing
+            if (!data.token || typeof data.token !== 'string') {
+                throw new Error('Invalid token received');
+            }
 
+            secureStorage.setItem('userToken', data.token);
+            secureStorage.setItem('isAdmin', 'true');
 
             set({
                 userToken: data.token,
@@ -66,12 +136,23 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                 isLoading: false
             });
         } catch (err: any) {
-            set({ error: err.message || 'Admin login failed', isLoading: false });
+            // Don't expose detailed error messages to prevent enumeration
+            set({ error: 'Authentication failed. Please check your credentials.', isLoading: false });
+            console.error('Login error:', err.message);
         }
     },
 
     logout: () => {
-        localStorage.clear();
+        // Clear all stored data securely
+        secureStorage.clear();
+        
+        // Also clear localStorage as fallback
+        try {
+            localStorage.clear();
+        } catch (e) {
+            // Ignore errors
+        }
+        
         set({
             userToken: null,
             userId: null,
@@ -80,9 +161,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             isLoading: false,
             error: null
         });
-
-
-
     },
 
 
@@ -92,20 +170,41 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     loginUser: async (email, password) => {
         set({ isLoading: true, error: null });
+        
+        // Input validation
+        if (!isValidEmail(email)) {
+            set({ error: 'Invalid email format', isLoading: false });
+            return;
+        }
+        if (!password || password.length < 8) {
+            set({ error: 'Password must be at least 8 characters', isLoading: false });
+            return;
+        }
+        
         try {
             const res = await fetch(`${BASE_URL}/user/login`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // CSRF protection
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify({ 
+                    email: sanitizeInput(email), 
+                    password 
+                })
             });
             const data = await res.json();
 
-            console.log("response data ", data)
             if (!res.ok) throw new Error(data.message || 'Login failed');
 
-            localStorage.setItem('userToken', data.token);
-            localStorage.setItem('userToken', 'false');
+            // Validate token format before storing
+            if (!data.token || typeof data.token !== 'string') {
+                throw new Error('Invalid token received');
+            }
 
+            secureStorage.setItem('userToken', data.token);
+            secureStorage.setItem('isAdmin', 'false');
 
             set({
                 userToken: data.token,
@@ -113,7 +212,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                 isLoading: false
             });
         } catch (err: any) {
-            set({ error: err.message || 'User login failed', isLoading: false });
+            // Don't expose detailed error messages
+            set({ error: 'Authentication failed. Please check your credentials.', isLoading: false });
+            console.error('Login error:', err.message);
         }
     },
 

@@ -64,9 +64,10 @@ const HeroBackground: React.FC = () => {
     window.addEventListener('mousemove', onMouseMove);
 
     const clock = new THREE.Clock();
+    let animationFrameId: number;
 
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
 
       const elapsedTime = clock.getElapsedTime();
 
@@ -98,8 +99,12 @@ const HeroBackground: React.FC = () => {
     window.addEventListener('resize', onWindowResize);
 
     return () => {
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', onWindowResize);
       window.removeEventListener('mousemove', onMouseMove);
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      renderer.dispose();
       if (mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);
       }

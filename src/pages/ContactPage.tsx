@@ -80,6 +80,7 @@ ${formData.message}
   );
   const injectGlobalStyles = () => {
     const style = document.createElement('style');
+    style.setAttribute('data-float-animation', 'true');
     style.textContent = `
       @keyframes float {
         0% {

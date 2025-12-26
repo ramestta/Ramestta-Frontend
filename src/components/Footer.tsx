@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
     if (isConnected && address && currentChainId !== 1370) {
       switchChain({ chainId: 1370 });
     }
-  }, [isConnected, address]);
+  }, [isConnected, address, currentChainId, switchChain]);
 
 
 
