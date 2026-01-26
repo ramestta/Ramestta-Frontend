@@ -54,6 +54,7 @@ const FloatingMenuButton: React.FC = () => {
     { name: 'RamaPay', href: '/ramapay', icon: Wallet },
     { name: 'Whitepaper', href: '/whitepaper', icon: FileText },
     { name: 'Developers', href: '/developers', icon: Code },
+    { name: 'Documentation', href: '/docs', icon: BookOpen },
     { name: 'Validator', href: '/validator', icon: Shield },
     { name: 'Bridge', href: '/bridge', icon: LinkIcon },
     { name: 'Swap', href: '/swap', icon: ArrowLeftRight },

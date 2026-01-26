@@ -4,7 +4,7 @@ import {
   Lock, Zap, Code, ChevronDown, ChevronRight, CheckCircle, 
   AlertTriangle, Download, ExternalLink, Server, Cpu, 
   Leaf, DollarSign, Vote, Network, Copy, Check, Menu, X,
-  QrCode, Store, Clock, Receipt, CreditCard, History
+  QrCode, Store, Clock, Receipt, CreditCard, History, Chrome
 } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
@@ -208,13 +208,13 @@ const RamaPayPage: React.FC = () => {
               Download from Play Store
             </a>
             <a
-              href="https://github.com/obidua/RamaPay-android"
+              href="https://chromewebstore.google.com/detail/neacbhpcglflokldfphkinnmdpfccgld"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-200 text-sm sm:text-base"
             >
-              <Code className="mr-2" size={18} />
-              View on GitHub
+              <Chrome className="mr-2" size={18} />
+              Add to Chrome
             </a>
           </div>
           
@@ -924,13 +924,13 @@ const RamaPayPage: React.FC = () => {
 
       {/* Download Section */}
       <section id="download" className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-gray-950 to-black relative">
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-4">Get RamaPay</h2>
           <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">
             Download and take control of your crypto
           </p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {/* Android */}
             <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-5 sm:p-6">
               <img 
@@ -952,6 +952,31 @@ const RamaPayPage: React.FC = () => {
                 Download from Play Store
               </a>
             </div>
+
+            {/* Chrome Extension - NEW */}
+            <div className="bg-gray-900/50 border border-primary-500/50 rounded-xl p-5 sm:p-6 relative overflow-hidden">
+              <div className="absolute top-2 right-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                NEW
+              </div>
+              <Chrome className="text-primary-400 mx-auto mb-3" size={40} />
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">Browser Extension</h3>
+              <p className="text-gray-400 text-xs sm:text-sm mb-4">Chrome • Brave • Edge</p>
+              <a
+                href="https://chromewebstore.google.com/detail/neacbhpcglflokldfphkinnmdpfccgld"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm"
+              >
+                <svg className="mr-2" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                  <path d="M21.17 8H12" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M3.95 6.06L8.54 14" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M10.88 21.94L15.46 14" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+                Add to Chrome
+              </a>
+            </div>
             
             {/* iOS */}
             <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-5 sm:p-6 opacity-60">
@@ -968,12 +993,14 @@ const RamaPayPage: React.FC = () => {
           {/* Specs */}
           <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 sm:p-6">
             <h3 className="text-base sm:text-lg font-bold text-white mb-4">Technical Specs</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
               {[
-                { label: 'Package', value: 'io.ramestta.wallet' },
-                { label: 'Version', value: '3.89' },
+                { label: 'Mobile Package', value: 'io.ramestta.wallet' },
+                { label: 'Mobile Version', value: '3.89' },
                 { label: 'Min SDK', value: 'API 24' },
                 { label: 'Target', value: 'SDK 35' },
+                { label: 'Extension', value: 'Chrome Web Store' },
+                { label: 'Browsers', value: 'Chrome, Brave, Edge' },
                 { label: 'License', value: 'MIT' },
                 { label: 'Based On', value: 'AlphaWallet' },
               ].map((spec, index) => (
@@ -996,7 +1023,7 @@ const RamaPayPage: React.FC = () => {
           <p className="text-base sm:text-lg text-gray-200 mb-6 sm:mb-8 max-w-xl mx-auto px-4">
             Join thousands trusting RamaPay for secure crypto management
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 flex-wrap">
             <a
               href="https://play.google.com/store/apps/details?id=io.ramestta.wallet"
               target="_blank"
@@ -1006,7 +1033,16 @@ const RamaPayPage: React.FC = () => {
               <svg className="mr-2" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
               </svg>
-              Download from Play Store
+              Android App
+            </a>
+            <a
+              href="https://chromewebstore.google.com/detail/neacbhpcglflokldfphkinnmdpfccgld"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg text-sm sm:text-base"
+            >
+              <Chrome className="mr-2" size={18} />
+              Chrome Extension
             </a>
             <a
               href="https://github.com/obidua/RamaPay-android"

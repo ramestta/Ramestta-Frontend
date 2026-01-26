@@ -254,8 +254,8 @@
 // export default DevelopersPage;
 
 
-import React from 'react';
-import { Code, Book, Github, Zap, CheckCircle, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Code, Book, Github, Zap, CheckCircle, ExternalLink, Package, Copy, Terminal, Globe } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import toast from 'react-hot-toast';
 
@@ -324,6 +324,47 @@ const DevelopersPage: React.FC = () => {
       toast.error("Failed to copy configuration");
     });
   };
+
+  const handleCopySDK = (text: string, message: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success(message);
+    }).catch(() => {
+      toast.error("Failed to copy");
+    });
+  };
+
+  const sdkInstallCommand = 'npm install @ramestta/sdk @ramestta/sdk-ethers ethers';
+  
+  const sdkUsageCode = `import { POSClient, use } from "@ramestta/sdk";
+import { Web3ClientPlugin } from "@ramestta/sdk-ethers";
+import { ethers } from "ethers";
+
+// Install the plugin
+use(Web3ClientPlugin);
+
+// Create providers
+const polygonProvider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+const ramesttaProvider = new ethers.providers.JsonRpcProvider("https://blockchain.ramestta.com");
+
+// Initialize
+const posClient = new POSClient();
+await posClient.init({
+    network: "mainnet",
+    version: "v1",
+    parent: { provider: polygonSigner },   // L2 Polygon
+    child: { provider: ramesttaSigner }    // L3 Ramestta
+});`;
+
+  const sdkPackages = [
+    { name: '@ramestta/sdk', version: '1.0.0', url: 'https://www.npmjs.com/package/@ramestta/sdk', desc: 'Core SDK' },
+    { name: '@ramestta/sdk-ethers', version: '1.0.3', url: 'https://www.npmjs.com/package/@ramestta/sdk-ethers', desc: 'Ethers.js Plugin' },
+    { name: '@ramestta/sdk-web3', version: '1.0.0', url: 'https://www.npmjs.com/package/@ramestta/sdk-web3', desc: 'Web3.js Plugin' },
+    { name: '@ramestta/sdk-react', version: '1.0.0', url: 'https://www.npmjs.com/package/@ramestta/sdk-react', desc: 'React Hooks & Components' },
+    { name: '@ramestta/contracts', version: '1.1.0', url: 'https://www.npmjs.com/package/@ramestta/contracts', desc: 'Smart Contracts & ABIs' },
+    { name: '@ramestta/staking-sdk', version: '1.0.1', url: 'https://www.npmjs.com/package/@ramestta/staking-sdk', desc: 'Staking SDK' },
+    { name: '@ramestta/bridge-sdk', version: '1.0.1', url: 'https://www.npmjs.com/package/@ramestta/bridge-sdk', desc: 'Bridge SDK' },
+  ];
+
   // Cube background component
   const CubeBackground = () => (
     <div className="absolute inset-0 overflow-hidden">
@@ -444,6 +485,175 @@ const DevelopersPage: React.FC = () => {
                   Copy Configuration
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ramestta SDK Section */}
+      <section className="section-padding bg-gray-950">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 border border-primary-500/30 rounded-full px-4 py-2 mb-6">
+              <Package size={18} className="text-primary-400" />
+              <span className="text-primary-400 font-semibold">NEW</span>
+              <span className="text-gray-300">v1.0.0 Released</span>
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-6">Official Ramestta SDK</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Build cross-chain applications with our official TypeScript/JavaScript SDK. 
+              Bridge assets between Polygon (L2) and Ramestta (L3) seamlessly.
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto space-y-8">
+            {/* SDK Packages Table */}
+            <div className="card p-6">
+              <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+                <Package className="mr-3 text-primary-400" size={24} />
+                Available Packages
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-700">
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Package</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Version</th>
+                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Description</th>
+                      <th className="text-right py-3 px-4 text-gray-400 font-medium">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sdkPackages.map((pkg, index) => (
+                      <tr key={index} className="border-b border-gray-800 hover:bg-gray-800/50 transition-colors">
+                        <td className="py-3 px-4">
+                          <code className="text-primary-400 font-mono">{pkg.name}</code>
+                        </td>
+                        <td className="py-3 px-4">
+                          <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-medium">{pkg.version}</span>
+                        </td>
+                        <td className="py-3 px-4 text-gray-300">{pkg.desc}</td>
+                        <td className="py-3 px-4 text-right">
+                          <a
+                            href={pkg.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary-400 hover:text-primary-300 inline-flex items-center cursor-pointer relative z-10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(pkg.url, '_blank');
+                            }}
+                          >
+                            npm <ExternalLink className="ml-1" size={12} />
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Install Command */}
+            <div className="card p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold text-white flex items-center">
+                  <Terminal className="mr-3 text-primary-400" size={24} />
+                  Installation
+                </h3>
+              </div>
+              <div className="bg-gray-950/80 rounded-lg p-4 border border-gray-700 flex items-center justify-between">
+                <code className="text-green-400 font-mono text-sm">{sdkInstallCommand}</code>
+                <button
+                  onClick={() => handleCopySDK(sdkInstallCommand, "Install command copied!")}
+                  className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700 rounded"
+                >
+                  <Copy size={18} />
+                </button>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-400">
+                <span className="flex items-center gap-2">
+                  <Package size={16} className="text-primary-400" />
+                  2 Packages
+                </span>
+                <span className="flex items-center gap-2">
+                  <Code size={16} className="text-green-400" />
+                  Ethers.js Support
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-green-400" />
+                  TypeScript Ready
+                </span>
+              </div>
+            </div>
+
+            {/* Usage Example */}
+            <div className="card p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold text-white flex items-center">
+                  <Code className="mr-3 text-primary-400" size={24} />
+                  Quick Start Example
+                </h3>
+                <button
+                  onClick={() => handleCopySDK(sdkUsageCode, "Code example copied!")}
+                  className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700 rounded flex items-center gap-2 text-sm"
+                >
+                  <Copy size={16} />
+                  Copy
+                </button>
+              </div>
+              <div className="bg-gray-950/80 rounded-lg p-6 border border-gray-700 overflow-x-auto">
+                <pre className="text-sm">
+                  <code className="text-green-400 font-mono whitespace-pre">{sdkUsageCode}</code>
+                </pre>
+              </div>
+            </div>
+
+            {/* SDK Features */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="card p-5 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Zap className="text-white" size={24} />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">POSClient</h4>
+                <p className="text-gray-400 text-sm">Bridge assets between Polygon L2 and Ramestta L3</p>
+              </div>
+              <div className="card p-5 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-primary-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Code className="text-white" size={24} />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Ethers.js Plugin</h4>
+                <p className="text-gray-400 text-sm">Native ethers.js integration with Web3ClientPlugin</p>
+              </div>
+              <div className="card p-5 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-primary-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Globe className="text-white" size={24} />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Network Constants</h4>
+                <p className="text-gray-400 text-sm">Pre-configured network settings and contracts</p>
+              </div>
+              <div className="card p-5 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="text-white" size={24} />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Full TypeScript</h4>
+                <p className="text-gray-400 text-sm">Complete type definitions for better DX</p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center pt-4">
+              <a
+                href="https://www.npmjs.com/package/@ramestta/sdk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center"
+              >
+                <Package className="mr-2" size={20} />
+                View Full Documentation
+                <ExternalLink className="ml-2" size={16} />
+              </a>
             </div>
           </div>
         </div>

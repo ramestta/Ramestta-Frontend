@@ -32,6 +32,7 @@ import UserPanel from './pages/UserPanel';
 import AdminPanel from './pages/AdminPanel';
 import NotFound from './pages/NotFound';
 import RamaPayPage from './pages/RamaPayPage';
+import { DocsPage } from './docs';
 
 import ScrollToTop from './components/ScrollToTop';
 import BlogPostForm from './components/BlogPostForm';
@@ -111,6 +112,11 @@ function App() {
               {/* -------------------- */}
               <Route path="/whitepaper" element={<WhitepaperPage />} />
               <Route path="/whitepaper/:sectionId" element={<WhitepaperPage />} />
+
+              {/* -------------------- */}
+              {/* Documentation full-screen isolated layout */}
+              {/* -------------------- */}
+              <Route path="/docs" element={<DocsPage />} />
 
               {/* -------------------- */}
               {/* Standalone pages */}

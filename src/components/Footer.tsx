@@ -24,6 +24,7 @@ const Footer: React.FC = () => {
   const resources = [
     { name: 'Whitepaper', href: '/whitepaper' },
     { name: 'Developers', href: '/developers' },
+    { name: 'Documentation', href: '/docs' },
     { name: 'Blog', href: '/blog' },
     { name: 'News & Price', href: '/news' },
     { name: 'Contact', href: '/contact' },

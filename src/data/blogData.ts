@@ -712,7 +712,7 @@ ramestta version
 ramestta init <your-validator-name> --chain-id ramestta-1370
 
 # Download genesis
-curl https://rpc.ramestta.com/genesis.json > ~/.ramestta/config/genesis.json
+curl https://blockchain.ramestta.com/genesis.json > ~/.ramestta/config/genesis.json
 
 # Configure peers
 # Add seed nodes to config.toml
