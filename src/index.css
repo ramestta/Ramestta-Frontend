@@ -6,7 +6,7 @@
 
 
 
-/* Hide scrollbar but keep scroll functionality */
+/* Hide scrollbar but keep scroll functionality for main page */
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Optional: just for clarity */
@@ -15,6 +15,31 @@
 html, body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Show scrollbars for docs content area */
+.docs-content ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.docs-content ::-webkit-scrollbar-track {
+  background: #1F2937;
+  border-radius: 4px;
+}
+
+.docs-content ::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 4px;
+}
+
+.docs-content ::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+.docs-content {
+  scrollbar-width: thin;
+  scrollbar-color: #4B5563 #1F2937;
 }
 
  /* font faces */

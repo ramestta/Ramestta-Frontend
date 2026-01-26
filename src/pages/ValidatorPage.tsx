@@ -1,8 +1,11 @@
 import React from 'react';
-import { Shield, Server, TrendingUp, Settings, CheckCircle, AlertCircle } from 'lucide-react';
+import { Shield, Server, TrendingUp, Settings, CheckCircle, AlertCircle, Cpu, HardDrive, Wifi, Zap, DollarSign, Clock, Users, Lock, AlertTriangle, HelpCircle, ChevronDown, ChevronUp, Award, BarChart3 } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
+import { useState } from 'react';
 
 const ValidatorPage: React.FC = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  
   // Cube background component
   const CubeBackground = () => (
     <div className="absolute inset-0 overflow-hidden">
@@ -53,8 +56,8 @@ const ValidatorPage: React.FC = () => {
   const requirements = [
     {
       title: 'Minimum Stake Amount',
-      description: 'Stake requirement details coming soon',
-      status: 'coming-soon'
+      description: '1,000,000 RAMA required to become a validator',
+      status: 'required'
     },
     {
       title: '99.9% Uptime',
@@ -65,6 +68,112 @@ const ValidatorPage: React.FC = () => {
       title: 'Validated Checkpoints',
       description: 'Sync checkpoints with Polygon PoS layer',
       status: 'required'
+    }
+  ];
+
+  const hardwareRequirements = [
+    {
+      icon: Cpu,
+      title: 'CPU',
+      minimum: '8 Cores',
+      recommended: '16+ Cores',
+      description: 'Modern x86-64 processor (AMD EPYC or Intel Xeon recommended)'
+    },
+    {
+      icon: HardDrive,
+      title: 'Storage',
+      minimum: '2 TB SSD',
+      recommended: '4+ TB NVMe',
+      description: 'High IOPS NVMe SSD for optimal block processing'
+    },
+    {
+      icon: Server,
+      title: 'RAM',
+      minimum: '32 GB',
+      recommended: '64+ GB',
+      description: 'DDR4 ECC memory for production workloads'
+    },
+    {
+      icon: Wifi,
+      title: 'Network',
+      minimum: '100 Mbps',
+      recommended: '1 Gbps',
+      description: 'Low-latency connection with static IP'
+    }
+  ];
+
+  const validatorEconomics = [
+    {
+      icon: DollarSign,
+      title: 'Block Rewards',
+      value: '~2.5 RAMA',
+      description: 'Per block validated (from 1% annual inflation pool)'
+    },
+    {
+      icon: Zap,
+      title: 'Transaction Fees',
+      value: '~30%',
+      description: 'Share of priority fees from transactions in your blocks'
+    },
+    {
+      icon: Award,
+      title: 'Checkpoint Rewards',
+      value: 'Variable',
+      description: 'Additional rewards for checkpoint submissions to Polygon'
+    },
+    {
+      icon: BarChart3,
+      title: 'Annual APY',
+      value: '8-15%',
+      description: 'Estimated annual return based on stake and uptime'
+    }
+  ];
+
+  const slashingConditions = [
+    {
+      severity: 'high',
+      title: 'Double Signing',
+      penalty: '5% of stake',
+      description: 'Signing two different blocks at the same height'
+    },
+    {
+      severity: 'medium',
+      title: 'Extended Downtime',
+      penalty: '1% of stake',
+      description: 'Missing more than 50% of blocks in a 24-hour period'
+    },
+    {
+      severity: 'low',
+      title: 'Checkpoint Miss',
+      penalty: 'Reduced rewards',
+      description: 'Failing to sign checkpoint submissions'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'What is the minimum stake required to become a validator?',
+      answer: 'You need a minimum of 1,000,000 RAMA tokens to become a validator. This stake acts as collateral and demonstrates your commitment to network security. Delegators can also stake with existing validators if they don\'t meet the minimum.'
+    },
+    {
+      question: 'How are validator rewards calculated?',
+      answer: 'Validators earn rewards from three sources: block rewards (from the 1% annual inflation), transaction priority fees (EIP-1559), and checkpoint submission rewards. Your share depends on your stake weight, uptime, and block production efficiency.'
+    },
+    {
+      question: 'What happens if my validator goes offline?',
+      answer: 'Short downtime (< 2 hours) results in missed rewards but no penalties. Extended downtime (> 50% of blocks in 24 hours) triggers slashing of 1% of your stake. We recommend running backup nodes and monitoring systems.'
+    },
+    {
+      question: 'Can I run a validator on cloud infrastructure?',
+      answer: 'Yes, cloud providers like AWS, Google Cloud, and Azure work well. We recommend using dedicated instances (not shared) with NVMe storage. Geographic distribution across multiple data centers is ideal for redundancy.'
+    },
+    {
+      question: 'How long does it take to unstake my RAMA?',
+      answer: 'Unstaking requires a 21-day unbonding period. During this time, your tokens are locked and do not earn rewards. This period ensures network security and prevents flash attacks.'
+    },
+    {
+      question: 'Do I need technical expertise to run a validator?',
+      answer: 'Running a validator requires Linux system administration skills, understanding of blockchain concepts, and ability to maintain 24/7 uptime. We provide comprehensive documentation and community support.'
     }
   ];
 
@@ -184,11 +293,38 @@ const ValidatorPage: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">{req.title}</h3>
                 <p className="text-gray-300 leading-relaxed">{req.description}</p>
-                {req.status === 'coming-soon' && (
-                  <span className="inline-block mt-3 px-3 py-1 bg-yellow-900/50 text-yellow-300 rounded-full text-sm font-medium border border-yellow-500/30">
-                    Coming Soon
-                  </span>
-                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hardware Requirements */}
+      <section className="section-padding bg-gray-950">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Hardware Requirements</h2>
+            <p className="text-xl text-gray-300">Recommended specifications for running a production validator node</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {hardwareRequirements.map((hw, index) => (
+              <div key={index} className="card p-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-primary-500 rounded-xl flex items-center justify-center mb-4">
+                  <hw.icon className="text-white" size={24} />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-3">{hw.title}</h3>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400 text-sm">Minimum:</span>
+                    <span className="text-yellow-400 font-medium">{hw.minimum}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400 text-sm">Recommended:</span>
+                    <span className="text-green-400 font-medium">{hw.recommended}</span>
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm">{hw.description}</p>
               </div>
             ))}
           </div>
@@ -265,6 +401,147 @@ const ValidatorPage: React.FC = () => {
               <div className="text-4xl font-bold text-primary-400 mb-2">10K+</div>
               <div className="text-gray-300">TPS Capacity</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Validator Economics */}
+      <section className="section-padding bg-black">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Validator Economics</h2>
+            <p className="text-xl text-gray-300">Understand how validators earn rewards on Ramestta</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {validatorEconomics.map((item, index) => (
+              <div key={index} className="card p-6 text-center">
+                <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="text-white" size={28} />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                <div className="text-3xl font-bold text-primary-400 mb-2">{item.value}</div>
+                <p className="text-gray-400 text-sm">{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="max-w-4xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+              <DollarSign className="text-primary-400 mr-2" size={24} />
+              Reward Calculation Example
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-gray-300 mb-4">For a validator with <span className="text-primary-400 font-semibold">5,000,000 RAMA</span> stake:</p>
+                <ul className="space-y-2 text-gray-300">
+                  <li className="flex items-center"><CheckCircle className="text-green-400 mr-2" size={16} /> ~180 blocks validated per day</li>
+                  <li className="flex items-center"><CheckCircle className="text-green-400 mr-2" size={16} /> ~450 RAMA in block rewards daily</li>
+                  <li className="flex items-center"><CheckCircle className="text-green-400 mr-2" size={16} /> ~135 RAMA in transaction fees daily</li>
+                  <li className="flex items-center"><CheckCircle className="text-green-400 mr-2" size={16} /> ~213,000 RAMA annually (~4.3% APY base)</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg p-4">
+                <p className="text-sm text-gray-400 mb-2">Note: Actual rewards vary based on:</p>
+                <ul className="text-sm text-gray-400 space-y-1">
+                  <li>• Network transaction volume</li>
+                  <li>• Your stake weight vs total staked</li>
+                  <li>• Uptime and block production</li>
+                  <li>• Delegator commissions (if applicable)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Slashing Conditions */}
+      <section className="section-padding bg-gray-950">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Slashing Conditions</h2>
+            <p className="text-xl text-gray-300">Understand the penalties for validator misbehavior</p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-4">
+              {slashingConditions.map((condition, index) => (
+                <div key={index} className={`card p-6 border-l-4 ${
+                  condition.severity === 'high' ? 'border-l-red-500' :
+                  condition.severity === 'medium' ? 'border-l-yellow-500' : 'border-l-blue-500'
+                }`}>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div className="flex items-center mb-3 md:mb-0">
+                      <AlertTriangle className={`mr-3 ${
+                        condition.severity === 'high' ? 'text-red-400' :
+                        condition.severity === 'medium' ? 'text-yellow-400' : 'text-blue-400'
+                      }`} size={24} />
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{condition.title}</h3>
+                        <p className="text-gray-400 text-sm">{condition.description}</p>
+                      </div>
+                    </div>
+                    <div className={`px-4 py-2 rounded-lg ${
+                      condition.severity === 'high' ? 'bg-red-900/50 text-red-300' :
+                      condition.severity === 'medium' ? 'bg-yellow-900/50 text-yellow-300' : 'bg-blue-900/50 text-blue-300'
+                    }`}>
+                      <span className="font-semibold">{condition.penalty}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 bg-green-900/20 border border-green-500/30 rounded-xl p-6">
+              <div className="flex items-start">
+                <Shield className="text-green-400 mr-4 flex-shrink-0 mt-1" size={24} />
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-2">Slashing Protection Tips</h4>
+                  <ul className="text-gray-300 space-y-2">
+                    <li>• Never run the same validator keys on multiple machines</li>
+                    <li>• Use a remote signer to prevent key exposure</li>
+                    <li>• Set up comprehensive monitoring and alerting</li>
+                    <li>• Maintain backup infrastructure for failover</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-black">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-300">Common questions about running a Ramestta validator</p>
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="card overflow-hidden">
+                <button
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-800/50 transition-colors"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <div className="flex items-center">
+                    <HelpCircle className="text-primary-400 mr-4 flex-shrink-0" size={24} />
+                    <span className="text-white font-semibold">{faq.question}</span>
+                  </div>
+                  {openFaq === index ? (
+                    <ChevronUp className="text-gray-400 flex-shrink-0" size={20} />
+                  ) : (
+                    <ChevronDown className="text-gray-400 flex-shrink-0" size={20} />
+                  )}
+                </button>
+                {openFaq === index && (
+                  <div className="px-6 pb-6 pt-0">
+                    <div className="pl-10 text-gray-300 leading-relaxed border-l-2 border-primary-500/30 ml-2">
+                      {faq.answer}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Zap, Shield, DollarSign, Network, Code, TrendingUp, Layers, Clock, Lock, ArrowUpDown } from 'lucide-react';
+import { ArrowRight, Zap, Shield, DollarSign, Network, Code, TrendingUp, Layers, Clock, Lock, ArrowUpDown, Gamepad2, CreditCard, Building2, Vote, Palette, Globe } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import BlockchainGlobe from '../components/BlockchainGlobe';
 import SEO from '../components/SEO';
@@ -56,6 +56,80 @@ const HomePage: React.FC = () => {
     { label: 'Bridge', value: 'ramabridge.com' },
     { label: 'Swap DApp', value: 'ramaswap.com' },
     { label: 'Add Network', value: 'chainlist.org/chain/1370' }
+  ];
+
+  const useCases = [
+    {
+      icon: CreditCard,
+      title: 'Payments & Remittances',
+      description: 'Real-time cross-border payments with $0.0002 fees and instant settlement. Perfect for merchant payments and remittances.',
+      stats: 'Sub-2s finality'
+    },
+    {
+      icon: Gamepad2,
+      title: 'Gaming & Metaverse',
+      description: 'In-game economies with instant microtransactions, NFT items, and player-owned assets at scale.',
+      stats: '65K+ TPS'
+    },
+    {
+      icon: Building2,
+      title: 'Enterprise DeFi',
+      description: 'Institutional-grade DeFi with deterministic fees, programmable finality, and regulatory compliance.',
+      stats: 'Ethereum security'
+    },
+    {
+      icon: Palette,
+      title: 'NFT Marketplaces',
+      description: 'Mint, trade, and transfer NFTs with near-zero gas costs. Perfect for high-frequency trading.',
+      stats: '$0.0002 per mint'
+    },
+    {
+      icon: Vote,
+      title: 'DAOs & Governance',
+      description: 'On-chain voting and governance with low costs enabling true decentralized decision-making.',
+      stats: 'Full EVM support'
+    },
+    {
+      icon: Globe,
+      title: 'IoT & Machine Economy',
+      description: 'Micropayments for connected devices and machine-to-machine transactions at scale.',
+      stats: 'High throughput'
+    }
+  ];
+
+  const technologyStack = [
+    {
+      layer: 'L1',
+      name: 'Ethereum',
+      role: 'Ultimate Settlement',
+      description: 'Root chain security and finality',
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      layer: 'L2',
+      name: 'Polygon PoS',
+      role: 'Checkpoint Layer',
+      description: 'Scalable execution and checkpoints',
+      color: 'from-purple-500 to-purple-600'
+    },
+    {
+      layer: 'L3',
+      name: 'Ramestta',
+      role: 'Execution Layer',
+      description: 'High-performance app-specific chain',
+      color: 'from-primary-500 to-secondary-500'
+    }
+  ];
+
+  const integrations = [
+    { name: 'MetaMask', category: 'Wallet' },
+    { name: 'WalletConnect', category: 'Wallet' },
+    { name: 'Hardhat', category: 'Dev Tool' },
+    { name: 'Remix', category: 'IDE' },
+    { name: 'Ethers.js', category: 'Library' },
+    { name: 'Web3.js', category: 'Library' },
+    { name: 'OpenZeppelin', category: 'Security' },
+    { name: 'The Graph', category: 'Indexing' }
   ];
 
   // Cube background component
@@ -219,6 +293,97 @@ const HomePage: React.FC = () => {
                 <p className="text-gray-300 leading-relaxed">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="section-padding bg-gray-950 relative overflow-hidden">
+        <CubeBackground />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Built for Real-World Use Cases</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              From payments to gaming to enterprise applications - Ramestta powers the next generation of blockchain applications
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {useCases.map((useCase, index) => (
+              <div key={index} className="card p-8 group hover:scale-105 transition-all duration-200">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-14 h-14 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center">
+                    <useCase.icon className="text-white" size={28} />
+                  </div>
+                  <span className="px-3 py-1 bg-primary-900/50 text-primary-300 rounded-full text-sm font-medium">
+                    {useCase.stats}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">{useCase.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{useCase.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Stack Section */}
+      <section className="section-padding bg-black relative overflow-hidden">
+        <CubeBackground />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">The Complete Security Stack</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Inherit security from Ethereum while achieving unprecedented performance on Layer-3
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {technologyStack.map((tech, index) => (
+                <div key={index} className="flex items-center mb-6 last:mb-0">
+                  <div className={`w-20 h-20 bg-gradient-to-r ${tech.color} rounded-xl flex flex-col items-center justify-center mr-6 flex-shrink-0`}>
+                    <span className="text-white font-bold text-lg">{tech.layer}</span>
+                    <span className="text-white/80 text-xs">{tech.role.split(' ')[0]}</span>
+                  </div>
+                  <div className="flex-grow card p-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-1">{tech.name}</h3>
+                        <p className="text-primary-400 text-sm font-medium">{tech.role}</p>
+                      </div>
+                      <p className="text-gray-400 text-sm mt-2 md:mt-0">{tech.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {/* Connection lines */}
+              <div className="absolute left-10 top-20 bottom-20 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-primary-500 hidden md:block"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations Section */}
+      <section className="section-padding bg-gray-950 relative overflow-hidden">
+        <CubeBackground />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Ecosystem Integrations</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Works seamlessly with your favorite Web3 tools and frameworks - no migration required
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            {integrations.map((integration, index) => (
+              <div key={index} className="card p-4 text-center hover:scale-105 transition-transform duration-200">
+                <div className="text-white font-semibold mb-1">{integration.name}</div>
+                <div className="text-xs text-primary-400">{integration.category}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link to="/developers" className="text-primary-400 hover:text-primary-300 inline-flex items-center font-medium">
+              View All Integrations <ArrowRight className="ml-2" size={16} />
+            </Link>
           </div>
         </div>
       </section>

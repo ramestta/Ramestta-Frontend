@@ -132,7 +132,7 @@ const RamaPayPage: React.FC = () => {
     { name: 'Ramestta Mainnet', chainId: 1370, symbol: 'RAMA', primary: true, rpc: 'https://blockchain.ramestta.com' },
     { name: 'Ramestta Testnet', chainId: 1369, symbol: 'RAMA', primary: true, rpc: 'https://testnet.ramestta.com' },
     { name: 'Ethereum', chainId: 1, symbol: 'ETH', primary: false },
-    { name: 'Polygon', chainId: 137, symbol: 'MATIC', primary: false },
+    { name: 'Polygon', chainId: 137, symbol: 'POL', primary: false },
     { name: 'BNB Chain', chainId: 56, symbol: 'BNB', primary: false },
     { name: 'Avalanche', chainId: 43114, symbol: 'AVAX', primary: false },
     { name: 'Arbitrum', chainId: 42161, symbol: 'AETH', primary: false },

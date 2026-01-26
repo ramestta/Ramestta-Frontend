@@ -2,19 +2,19 @@ import React from 'react';
 import { Heading, Paragraph, CodeBlock, InfoBox, Table, Card, Grid, List, Divider, Badge } from '../../components/DocsComponents';
 
 const TestnetPage: React.FC = () => {
-  const networkParams = `// Add Pingaksha Testnet to MetaMask programmatically
+  const networkParams = `// Add Ramestta Testnet to MetaMask programmatically
 await window.ethereum.request({
   method: 'wallet_addEthereumChain',
   params: [{
-    chainId: '0x52c7', // 21191 in hexadecimal
-    chainName: 'Pingaksha Testnet',
+    chainId: '0x55b', // 1371 in hexadecimal
+    chainName: 'Ramestta Testnet',
     rpcUrls: ['https://testnet.ramestta.com'],
     nativeCurrency: {
       name: 'RAMA',
       symbol: 'RAMA',
       decimals: 18
     },
-    blockExplorerUrls: ['https://testnet-ramascan.ramestta.com']
+    blockExplorerUrls: ['https://testnet.ramascan.com']
   }]
 });`;
 
@@ -33,29 +33,29 @@ const requestTestTokens = async (address: string) => {
 
   const testnetConnection = `import { ethers } from 'ethers';
 
-// Connect to Pingaksha Testnet
+// Connect to Ramestta Testnet
 const provider = new ethers.JsonRpcProvider('https://testnet.ramestta.com');
 
 // Verify you're on testnet
 const network = await provider.getNetwork();
-console.log('Chain ID:', network.chainId); // 21191n
+console.log('Chain ID:', network.chainId); // 1371n
 
 // IMPORTANT: Always verify chain ID in production
-if (network.chainId !== 21191n) {
-  throw new Error('Not connected to Pingaksha Testnet!');
+if (network.chainId !== 1371n) {
+  throw new Error('Not connected to Ramestta Testnet!');
 }`;
 
   return (
     <div>
-      <Heading level={1}>Pingaksha Testnet</Heading>
+      <Heading level={1}>Ramestta Testnet</Heading>
       
       <div className="flex items-center gap-3 mb-6">
         <Badge variant="warning">Testing</Badge>
-        <Badge variant="secondary">Chain ID: 21191</Badge>
+        <Badge variant="secondary">Chain ID: 1371</Badge>
       </div>
 
       <Paragraph>
-        Pingaksha Testnet is Ramestta's testing environment where developers can deploy 
+        Ramestta Testnet is the testing environment where developers can deploy 
         and test smart contracts without using real assets. Test RAMA tokens have no real value 
         and can be obtained for free from the faucet.
       </Paragraph>
@@ -70,13 +70,14 @@ if (network.chainId !== 21191n) {
       <Table
         headers={['Parameter', 'Value']}
         rows={[
-          ['Network Name', 'Pingaksha Testnet'],
-          ['Chain ID', '21191'],
-          ['Chain ID (Hex)', '0x52c7'],
+          ['Network Name', 'Ramestta Testnet (Pingaksha)'],
+          ['Chain ID', '1371'],
+          ['Chain ID (Hex)', '0x55b'],
           ['Currency Symbol', 'RAMA'],
           ['Currency Decimals', '18'],
           ['Block Time', '~2 seconds'],
-          ['Consensus', 'Proof-of-Stake (PoS)'],
+          ['Consensus', 'Heimdall (PoS) + Bor (EVM)'],
+          ['Parent Chain', 'Polygon Amoy (Chain ID: 80002)'],
         ]}
       />
 

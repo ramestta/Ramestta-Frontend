@@ -33,7 +33,7 @@ const connectWallet = async () => {
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x52c6' }], // 21190 in hex
+        params: [{ chainId: '0x55a' }], // 1370 in hex
       });
     } catch (switchError: any) {
       // Chain not added, add it
@@ -41,7 +41,7 @@ const connectWallet = async () => {
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [{
-            chainId: '0x52c6',
+            chainId: '0x55a',
             chainName: 'Ramestta Mainnet',
             rpcUrls: ['https://blockchain.ramestta.com'],
             nativeCurrency: {
@@ -145,13 +145,13 @@ module.exports = {
   networks: {
     ramestta: {
       url: "https://blockchain.ramestta.com",
-      chainId: 21190,
+      chainId: 1370,
       accounts: [process.env.PRIVATE_KEY],
       gasPrice: 1000000000, // 1 gwei
     },
     ramestatestnet: {
       url: "https://testnet.ramestta.com",
-      chainId: 21191,
+      chainId: 1371,
       accounts: [process.env.PRIVATE_KEY],
       gasPrice: 1000000000,
     }
@@ -162,7 +162,7 @@ module.exports = {
     },
     customChains: [{
       network: "ramestta",
-      chainId: 21190,
+      chainId: 1370,
       urls: {
         apiURL: "https://ramascan.com/api",
         browserURL: "https://ramascan.com"

@@ -6,6 +6,12 @@ import {
   FileText,
   Image,
   ExternalLink,
+  CheckCircle,
+  Code,
+  Shield,
+  Zap,
+  Clock,
+  Database,
 } from "lucide-react";
 import FloatingParticles from "../components/FloatingParticles";
 import { createPublicClient, http, Block, Transaction, formatGwei } from "viem";
@@ -259,6 +265,167 @@ const ExplorerPage: React.FC = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contract Verification Section */}
+      <section className="section-padding bg-black">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Smart Contract Verification
+            </h2>
+            <p className="text-xl text-gray-300">
+              Verify and publish your contract source code for transparency and trust
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-green-900/50 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 border border-green-500/30">
+                    <CheckCircle className="text-green-400" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Hardhat Verification</h3>
+                    <p className="text-gray-300">Verify contracts directly from your Hardhat deployment scripts with our Blockscout-compatible API.</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 border border-blue-500/30">
+                    <Code className="text-blue-400" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Multi-File Support</h3>
+                    <p className="text-gray-300">Upload flattened or multi-file contracts with automatic import resolution.</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 border border-purple-500/30">
+                    <Shield className="text-purple-400" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Proxy Detection</h3>
+                    <p className="text-gray-300">Automatic proxy contract detection with implementation linking for upgradeable contracts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card p-6">
+              <h4 className="text-lg font-semibold text-white mb-4">Hardhat Configuration</h4>
+              <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
+                <code className="text-gray-300">
+{`// hardhat.config.js
+etherscan: {
+  apiKey: {
+    ramestta: "your-api-key"
+  },
+  customChains: [{
+    network: "ramestta",
+    chainId: 1370,
+    urls: {
+      apiURL: "https://ramascan.com/api",
+      browserURL: "https://ramascan.com"
+    }
+  }]
+}`}
+                </code>
+              </pre>
+              <a
+                href="https://www.ramascan.com/contract-verification"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-4 inline-flex items-center"
+              >
+                Verify Contract <ExternalLink className="ml-2" size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* API Features Section */}
+      <section className="section-padding bg-gray-950">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Powerful API Features
+            </h2>
+            <p className="text-xl text-gray-300">
+              Built on Blockscout v9.0.2 with comprehensive Ethereum-compatible APIs
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="card p-6 text-center">
+              <div className="w-14 h-14 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="text-white" size={28} />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">High Rate Limits</h3>
+              <p className="text-gray-400 text-sm">10 requests/second for free tier, 100 req/sec for premium</p>
+            </div>
+            <div className="card p-6 text-center">
+              <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Database className="text-white" size={28} />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Full Data Access</h3>
+              <p className="text-gray-400 text-sm">Complete transaction history, logs, and internal traces</p>
+            </div>
+            <div className="card p-6 text-center">
+              <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="text-white" size={28} />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Real-time Updates</h3>
+              <p className="text-gray-400 text-sm">WebSocket subscriptions for blocks, transactions, and logs</p>
+            </div>
+            <div className="card p-6 text-center">
+              <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Code className="text-white" size={28} />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Etherscan Compatible</h3>
+              <p className="text-gray-400 text-sm">Drop-in replacement for Etherscan API integrations</p>
+            </div>
+          </div>
+          <div className="max-w-4xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">Available API Endpoints</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Account balance & transactions</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Contract verification & ABI</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Token transfers & holders</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Block & transaction details</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Event logs & internal txns</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>Gas price oracle</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>NFT metadata & transfers</span>
+                </div>
+                <div className="flex items-center text-gray-300">
+                  <CheckCircle className="text-green-400 mr-2" size={16} />
+                  <span>GraphQL for complex queries</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

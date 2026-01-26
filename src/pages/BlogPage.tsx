@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
+import { Calendar, User, ArrowRight, Tag, BookOpen, Code, Coins, Gamepad2, Building2, Users } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
 import { breadcrumbSchema } from '../utils/structuredData';
@@ -15,6 +15,54 @@ const BlogPage: React.FC = () => {
     { name: 'Tutorial', count: 6 },
     { name: 'DeFi', count: 4 },
     { name: 'NFT', count: 2 }
+  ];
+
+  const popularTopics = [
+    {
+      icon: Code,
+      title: 'Developer Guides',
+      description: 'Smart contract development, SDK tutorials, and integration guides',
+      count: 12
+    },
+    {
+      icon: Coins,
+      title: 'DeFi & Trading',
+      description: 'RamesttaSwap, liquidity mining, and yield strategies',
+      count: 8
+    },
+    {
+      icon: Gamepad2,
+      title: 'Gaming & NFTs',
+      description: 'In-game economies, NFT marketplaces, and metaverse building',
+      count: 6
+    },
+    {
+      icon: Building2,
+      title: 'Enterprise Solutions',
+      description: 'Business use cases, integration patterns, and case studies',
+      count: 5
+    }
+  ];
+
+  const communityResources = [
+    {
+      title: 'Discord Community',
+      description: 'Join 10K+ developers and enthusiasts',
+      link: 'https://discord.gg/ramestta',
+      buttonText: 'Join Discord'
+    },
+    {
+      title: 'GitHub Repository',
+      description: 'Explore open-source code and SDKs',
+      link: 'https://github.com/ramestta',
+      buttonText: 'View GitHub'
+    },
+    {
+      title: 'Developer Forum',
+      description: 'Ask questions and share solutions',
+      link: 'https://forum.ramestta.com',
+      buttonText: 'Visit Forum'
+    }
   ];
   // Cube background component
   const CubeBackground = () => (
@@ -164,6 +212,31 @@ const BlogPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Popular Topics */}
+      <section className="section-padding bg-black">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Popular Topics</h2>
+            <p className="text-xl text-gray-300">Explore articles by topic area</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {popularTopics.map((topic, index) => (
+              <div key={index} className="card p-6 hover:scale-105 transition-all duration-200 cursor-pointer group">
+                <div className="w-14 h-14 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <topic.icon className="text-white" size={28} />
+                </div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-primary-400 transition-colors">{topic.title}</h3>
+                  <span className="text-sm text-primary-400 font-medium">{topic.count} articles</span>
+                </div>
+                <p className="text-gray-400 text-sm">{topic.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Blog Posts Grid */}
       <section className="section-padding bg-black">
         <CubeBackground />
@@ -205,6 +278,36 @@ const BlogPage: React.FC = () => {
                   <ArrowRight className="text-primary-400 group-hover:translate-x-1 transition-transform" size={16} />
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Resources */}
+      <section className="section-padding bg-gray-950">
+        <CubeBackground />
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Join the Community</h2>
+            <p className="text-xl text-gray-300">Connect with other developers and enthusiasts</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {communityResources.map((resource, index) => (
+              <div key={index} className="card p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="text-white" size={32} />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">{resource.title}</h3>
+                <p className="text-gray-400 mb-6">{resource.description}</p>
+                <a
+                  href={resource.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary inline-flex items-center"
+                >
+                  {resource.buttonText} <ArrowRight className="ml-2" size={16} />
+                </a>
+              </div>
             ))}
           </div>
         </div>

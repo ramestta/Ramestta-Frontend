@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Newspaper, ExternalLink, TrendingUp, DollarSign, Activity, BarChart3 } from 'lucide-react';
+import { Newspaper, ExternalLink, TrendingUp, DollarSign, Activity, BarChart3, ArrowRight, Shield, Zap } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import NewsCard from '../components/NewsCard';
 import PriceCard from '../components/PriceCard';
@@ -222,6 +222,55 @@ const NewsPage: React.FC = () => {
     { label: 'All-Time High', value: '$0.458', icon: TrendingUp }
   ];
 
+  const tradingExchanges = [
+    {
+      name: 'BitMart',
+      pair: 'RAMA/USDT',
+      url: 'https://www.bitmart.com/trade/en-US?symbol=RAMA_USDT&layout=pro',
+      type: 'CEX',
+      volume: '$1.2M'
+    },
+    {
+      name: 'Koinpark',
+      pair: 'RAMA/INR',
+      url: 'https://www.koinpark.com/trade/RAMA-INR',
+      type: 'CEX',
+      volume: '$890K'
+    },
+    {
+      name: 'RamesttaSwap',
+      pair: 'RAMA/USDT',
+      url: 'https://ramaswap.com',
+      type: 'DEX',
+      volume: '$450K'
+    },
+    {
+      name: 'RamesttaSwap',
+      pair: 'RAMA/POL',
+      url: 'https://ramaswap.com',
+      type: 'DEX',
+      volume: '$320K'
+    }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: Zap,
+      title: 'Sub-2 Second Finality',
+      description: 'Lightning-fast transaction confirmation for real-time applications'
+    },
+    {
+      icon: DollarSign,
+      title: '$0.0002 Gas Fees',
+      description: 'Predictable micro-fees that are 1000× cheaper than L1/L2'
+    },
+    {
+      icon: Shield,
+      title: 'Ethereum Security',
+      description: 'Secured by Ethereum via Polygon checkpoints for ultimate trust'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-black">
       <SEO
@@ -273,6 +322,68 @@ const NewsPage: React.FC = () => {
                 </div>
                 <div className="text-2xl font-bold text-white mb-2">{stat.value}</div>
                 <div className="text-gray-400 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trading Exchanges Section */}
+      <section className="section-padding bg-gray-950 relative">
+        <CubeBackground />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Trade RAMA</h2>
+            <p className="text-xl text-gray-300">
+              Buy, sell, and trade RAMA tokens on centralized and decentralized exchanges
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {tradingExchanges.map((exchange, index) => (
+              <a
+                key={index}
+                href={exchange.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card p-6 hover:scale-105 transition-all duration-200 group"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                    exchange.type === 'CEX' ? 'bg-blue-900/50 text-blue-300' : 'bg-green-900/50 text-green-300'
+                  }`}>
+                    {exchange.type}
+                  </span>
+                  <ExternalLink className="text-gray-400 group-hover:text-primary-400 transition-colors" size={16} />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-primary-400 transition-colors">{exchange.name}</h3>
+                <p className="text-primary-400 font-medium mb-2">{exchange.pair}</p>
+                <div className="text-gray-400 text-sm">24h Volume: {exchange.volume}</div>
+              </a>
+            ))}
+          </div>
+          <div className="text-center">
+            <a href="/swap" className="text-primary-400 hover:text-primary-300 inline-flex items-center font-medium">
+              Trade on RamesttaSwap <ArrowRight className="ml-2" size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Features Highlight */}
+      <section className="section-padding bg-black relative">
+        <CubeBackground />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-6">Why Invest in RAMA?</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {keyFeatures.map((feature, index) => (
+              <div key={index} className="card p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <feature.icon className="text-white" size={32} />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-4">{feature.title}</h3>
+                <p className="text-gray-300">{feature.description}</p>
               </div>
             ))}
           </div>

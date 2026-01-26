@@ -28,7 +28,7 @@ const batchRequests = async () => {
   const wsExample = `import { ethers } from 'ethers';
 
 // Connect via WebSocket
-const wsProvider = new ethers.WebSocketProvider('wss://ws.ramestta.com');
+const wsProvider = new ethers.WebSocketProvider('wss://blockchain.ramestta.com/ws');
 
 // Subscribe to new blocks
 wsProvider.on('block', (blockNumber) => {
@@ -52,12 +52,11 @@ wsProvider.on({ address }, (log) => {
 const createFallbackProvider = () => {
   const providers = [
     new ethers.JsonRpcProvider('https://blockchain.ramestta.com'),
-    new ethers.JsonRpcProvider('https://rpc2.ramestta.com'),
-    new ethers.JsonRpcProvider('https://rpc3.ramestta.com'),
+    new ethers.JsonRpcProvider('https://blockchain2.ramestta.com'),
   ];
   
   // FallbackProvider automatically switches on failure
-  return new ethers.FallbackProvider(providers, 21190);
+  return new ethers.FallbackProvider(providers, 1370);
 };
 
 // Usage
@@ -111,8 +110,7 @@ const rpcCall = async (method: string, params: any[] = []) => {
         headers={['Endpoint', 'URL', 'Status']}
         rows={[
           ['Primary', 'https://blockchain.ramestta.com', '✅ Active'],
-          ['Backup 1', 'https://rpc2.ramestta.com', '✅ Active'],
-          ['Backup 2', 'https://rpc3.ramestta.com', '✅ Active'],
+          ['Secondary', 'https://blockchain2.ramestta.com', '✅ Active'],
         ]}
       />
 
@@ -121,7 +119,7 @@ const rpcCall = async (method: string, params: any[] = []) => {
       <Table
         headers={['Endpoint', 'URL', 'Use Case']}
         rows={[
-          ['Primary WS', 'wss://ws.ramestta.com', 'Real-time subscriptions'],
+          ['Primary WS', 'wss://blockchain.ramestta.com/ws', 'Real-time subscriptions'],
         ]}
       />
 
@@ -131,7 +129,7 @@ const rpcCall = async (method: string, params: any[] = []) => {
         headers={['Type', 'URL']}
         rows={[
           ['HTTP', 'https://testnet.ramestta.com'],
-          ['WebSocket', 'wss://testnet-ws.ramestta.com'],
+          ['WebSocket', 'wss://testnet.ramestta.com/ws'],
         ]}
       />
 

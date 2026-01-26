@@ -29,7 +29,7 @@ const SwapPage: React.FC = () => {
   const tokenPairs = [
     { base: 'RAMA', quote: 'USDT', tvl: '$2.5M', volume24h: '$450K' },
     { base: 'RAMA', quote: 'USDC', tvl: '$1.8M', volume24h: '$320K' },
-    { base: 'RAMA', quote: 'MATIC', tvl: '$1.2M', volume24h: '$210K' },
+    { base: 'RAMA', quote: 'POL', tvl: '$1.2M', volume24h: '$210K' },
     { base: 'WETH', quote: 'USDT', tvl: '$3.2M', volume24h: '$580K' },
     { base: 'WBTC', quote: 'USDC', tvl: '$2.1M', volume24h: '$390K' },
     { base: 'WETH', quote: 'RAMA', tvl: '$1.5M', volume24h: '$270K' }

@@ -8,11 +8,34 @@ const MainnetPage = lazy(() => import('./pages/network/MainnetPage'));
 const TestnetPage = lazy(() => import('./pages/network/TestnetPage'));
 const RpcEndpointsPage = lazy(() => import('./pages/network/RpcEndpointsPage'));
 const L3ArchitecturePage = lazy(() => import('./pages/architecture/L3ArchitecturePage'));
+const HeimdallPage = lazy(() => import('./pages/architecture/HeimdallPage'));
+const BorPage = lazy(() => import('./pages/architecture/BorPage'));
 const SdkOverviewPage = lazy(() => import('./pages/sdk/SdkOverviewPage'));
+const SdkInstallationPage = lazy(() => import('./pages/sdk/SdkInstallationPage'));
 const SdkEthersPage = lazy(() => import('./pages/sdk/SdkEthersPage'));
 const SdkWeb3Page = lazy(() => import('./pages/sdk/SdkWeb3Page'));
 const ContractAddressesPage = lazy(() => import('./pages/contracts/ContractAddressesPage'));
+const StakingContractsPage = lazy(() => import('./pages/contracts/StakingContractsPage'));
 const BridgeOverviewPage = lazy(() => import('./pages/bridge/BridgeOverviewPage'));
+const DepositWithdrawPage = lazy(() => import('./pages/bridge/DepositWithdrawPage'));
+
+// Developers
+const DevSetupPage = lazy(() => import('./pages/developers/DevSetupPage'));
+const HardhatGuidePage = lazy(() => import('./pages/developers/HardhatGuidePage'));
+const RemixGuidePage = lazy(() => import('./pages/developers/RemixGuidePage'));
+
+// Validators
+const BecomeValidatorPage = lazy(() => import('./pages/validators/BecomeValidatorPage'));
+const StakingGuidePage = lazy(() => import('./pages/validators/StakingGuidePage'));
+
+// Wallet
+const RamapayOverviewPage = lazy(() => import('./pages/wallet/RamapayOverviewPage'));
+const BrowserExtensionPage = lazy(() => import('./pages/wallet/BrowserExtensionPage'));
+const MobileAppPage = lazy(() => import('./pages/wallet/MobileAppPage'));
+
+// API
+const JsonRpcPage = lazy(() => import('./pages/api/JsonRpcPage'));
+const RestApiPage = lazy(() => import('./pages/api/RestApiPage'));
 
 // Page registry mapping page IDs to components
 export const pageRegistry: Record<string, React.LazyExoticComponent<React.FC>> = {
@@ -20,6 +43,7 @@ export const pageRegistry: Record<string, React.LazyExoticComponent<React.FC>> =
   'welcome': WelcomePage,
   'overview': OverviewPage,
   'quick-start': QuickStartPage,
+  'quickstart': QuickStartPage,
   
   // Network
   'mainnet': MainnetPage,
@@ -28,36 +52,50 @@ export const pageRegistry: Record<string, React.LazyExoticComponent<React.FC>> =
   
   // Architecture
   'l3-architecture': L3ArchitecturePage,
-  'heimdall': L3ArchitecturePage, // Placeholder - can create separate page
-  'bor': L3ArchitecturePage, // Placeholder - can create separate page
+  'architecture': L3ArchitecturePage,
+  'heimdall': HeimdallPage,
+  'bor': BorPage,
   
   // SDK
   'sdk-overview': SdkOverviewPage,
-  'sdk-installation': SdkOverviewPage, // Placeholder
+  'sdk-installation': SdkInstallationPage,
   'sdk-ethers': SdkEthersPage,
   'sdk-web3': SdkWeb3Page,
+  'sdk-getting-started': SdkOverviewPage,
   
   // Contracts
   'contract-addresses': ContractAddressesPage,
-  'staking-contracts': ContractAddressesPage, // Placeholder
-  'bridge-contracts': ContractAddressesPage, // Placeholder
+  'contracts': ContractAddressesPage,
+  'staking-contracts': StakingContractsPage,
+  'bridge-contracts': ContractAddressesPage,
   
-  // Validators (Placeholders)
-  'become-validator': SdkOverviewPage,
-  'validator-requirements': SdkOverviewPage,
-  'staking-rewards': SdkOverviewPage,
+  // Validators
+  'become-validator': BecomeValidatorPage,
+  'validator-requirements': BecomeValidatorPage,
+  'staking-rewards': StakingGuidePage,
+  'staking-guide': StakingGuidePage,
   
   // Bridge
   'bridge-overview': BridgeOverviewPage,
-  'deposit-withdraw': BridgeOverviewPage, // Placeholder
+  'deposit-withdraw': DepositWithdrawPage,
   
-  // Wallet (Placeholders)
-  'ramapay-setup': SdkOverviewPage,
-  'wallet-integration': SdkOverviewPage,
+  // Developers
+  'dev-setup': DevSetupPage,
+  'hardhat-guide': HardhatGuidePage,
+  'remix-guide': RemixGuidePage,
   
-  // API (Placeholders)
-  'rpc-methods': RpcEndpointsPage,
-  'explorer-api': SdkOverviewPage,
+  // Wallet
+  'ramapay-setup': RamapayOverviewPage,
+  'wallet-integration': RamapayOverviewPage,
+  'ramapay-overview': RamapayOverviewPage,
+  'ramapay-extension': BrowserExtensionPage,
+  'ramapay-mobile': MobileAppPage,
+  
+  // API
+  'rpc-methods': JsonRpcPage,
+  'explorer-api': RestApiPage,
+  'json-rpc': JsonRpcPage,
+  'rest-api': RestApiPage,
 };
 
 // Loading component for Suspense

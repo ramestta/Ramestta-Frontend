@@ -121,29 +121,38 @@ interface TableProps {
 
 export const Table: React.FC<TableProps> = ({ headers, rows }) => {
   return (
-    <div className="my-4 overflow-x-auto">
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="border-b border-gray-700">
-            {headers.map((header, i) => (
-              <th key={i} className="text-left py-3 px-4 text-gray-400 font-medium text-sm">
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i} className="border-b border-gray-800 hover:bg-gray-800/30">
-              {row.map((cell, j) => (
-                <td key={j} className="py-3 px-4 text-gray-300 text-sm">
-                  {cell}
-                </td>
+    <div className="my-4 -mx-4 sm:mx-0 relative">
+      <div 
+        className="overflow-x-auto overflow-y-auto max-h-[70vh]"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#4B5563 #1F2937'
+        }}
+      >
+        <table className="min-w-max w-full border-collapse">
+          <thead className="sticky top-0 bg-gray-900 z-10">
+            <tr className="border-b border-gray-700">
+              {headers.map((header, i) => (
+                <th key={i} className="text-left py-3 px-4 text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">
+                  {header}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr key={i} className="border-b border-gray-800 hover:bg-gray-800/30">
+                {row.map((cell, j) => (
+                  <td key={j} className="py-3 px-4 text-gray-300 text-xs sm:text-sm whitespace-nowrap font-mono">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

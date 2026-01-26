@@ -12,7 +12,7 @@ const BridgePage: React.FC = () => {
     },
     {
       name: 'Polygon',
-      symbol: 'MATIC',
+      symbol: 'POL',
       status: 'Available',
       direction: 'bidirectional'
     },

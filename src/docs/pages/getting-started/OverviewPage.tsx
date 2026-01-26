@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Paragraph, InfoBox, Grid, Card, List, Divider } from '../../components/DocsComponents';
+import { Heading, Paragraph, InfoBox, Grid, Card, List, Divider, Table, CodeBlock } from '../../components/DocsComponents';
 
 const OverviewPage: React.FC = () => {
   return (
@@ -7,162 +7,179 @@ const OverviewPage: React.FC = () => {
       <Heading level={1}>Overview</Heading>
       
       <Paragraph>
-        Ramestta represents the next evolution in blockchain scalability - a Layer-3 solution that builds 
-        upon Polygon's proven Layer-2 infrastructure while maintaining Ethereum's security guarantees. 
-        This document provides a comprehensive overview of Ramestta's architecture, benefits, and use cases.
+        Ramestta is a Proof-of-Stake (PoS) side chain to Polygon, designed by the open source community 
+        to achieve true decentralization and reduce transaction fees for the EVM ecosystem. By leveraging 
+        Polygon's established infrastructure as its parent chain, Ramestta provides a scalable, secure, 
+        and cost-effective platform for decentralized applications.
       </Paragraph>
 
-      <Heading level={2}>The Problem We Solve</Heading>
+      <Heading level={2}>Polygon: Ramestta's Foundation</Heading>
 
       <Paragraph>
-        Despite significant improvements in blockchain scalability, existing solutions still face challenges:
+        Polygon serves as the foundation and parent chain for Ramestta. As one of the most successful 
+        blockchain scaling solutions for Ethereum, Polygon has proven its ability to handle high transaction 
+        volumes while maintaining security through its Proof-of-Stake consensus and checkpoint system.
       </Paragraph>
 
-      <Grid cols={2}>
-        <Card icon="💸" title="High Transaction Costs">
-          <p className="text-gray-400 text-sm mt-2">
-            Even on L2 solutions, transaction costs can be prohibitive for micro-transactions, 
-            gaming, and high-frequency applications.
-          </p>
-        </Card>
-        <Card icon="⏱️" title="Slow Finality">
-          <p className="text-gray-400 text-sm mt-2">
-            Many applications require instant confirmation. Waiting minutes for finality 
-            creates poor user experience.
-          </p>
-        </Card>
-        <Card icon="📈" title="Limited Throughput">
-          <p className="text-gray-400 text-sm mt-2">
-            Mass adoption requires throughput measured in tens of thousands of TPS, 
-            not hundreds.
-          </p>
-        </Card>
-        <Card icon="🔧" title="Developer Friction">
-          <p className="text-gray-400 text-sm mt-2">
-            Migrating between chains often requires code changes, security re-audits, 
-            and learning new tooling.
-          </p>
-        </Card>
-      </Grid>
+      <InfoBox type="info" title="Why Build on Polygon?">
+        Polygon's mature ecosystem, established validator network, and battle-tested bridge infrastructure 
+        provide the ideal foundation for Ramestta. This allows Ramestta to focus on application-layer 
+        optimizations while inheriting robust security guarantees.
+      </InfoBox>
 
-      <Heading level={2}>The Ramestta Solution</Heading>
+      <Heading level={2}>Ramestta: A Side Chain Solution</Heading>
 
       <Paragraph>
-        Ramestta addresses these challenges through its innovative Layer-3 architecture:
+        Ramestta operates as a side chain, using the Plasma bridge framework to achieve secure and efficient 
+        asset transfers. This architecture enables:
       </Paragraph>
 
       <List
         items={[
-          <><strong>Deterministic Micro-Fees:</strong> Transaction costs between $0.0002-$0.001, making micro-transactions economically viable</>,
-          <><strong>Sub-2 Second Finality:</strong> Instant confirmation at L3 level with progressive security through L2 and L1</>,
-          <><strong>65,000+ TPS:</strong> Horizontal scaling through multi-instance architecture for enterprise-grade throughput</>,
-          <><strong>100% EVM Equivalence:</strong> Not just compatible - fully equivalent. Deploy existing contracts with zero changes</>,
-          <><strong>Ethereum Security:</strong> Cryptographic and economic guarantees inherited through Polygon checkpoints</>
+          <><strong>Off-chain Computation:</strong> Transaction processing occurs on the Ramestta chain, reducing load on parent chain</>,
+          <><strong>Plasma Security:</strong> Assets are secured through the Plasma bridge framework with fraud proofs</>,
+          <><strong>Fast Finality:</strong> Transactions confirm in approximately 2 seconds</>,
+          <><strong>Low Fees:</strong> Gas costs below $0.01 per transaction</>
         ]}
       />
 
-      <Heading level={2}>Technical Foundation</Heading>
-
-      <Heading level={3}>Polygon: The Parent Chain</Heading>
-
-      <Paragraph>
-        Polygon serves as Ramestta's parent chain (L2), providing a highly successful blockchain scaling 
-        solution for Ethereum. It enables faster and more cost-effective transactions while maintaining 
-        security through its Proof-of-Stake consensus and checkpoint system to Ethereum mainnet.
-      </Paragraph>
-
-      <Heading level={3}>Ramestta: The Application Layer</Heading>
-
-      <Paragraph>
-        Ramestta operates as a side chain to Polygon, optimized for specific use cases:
-      </Paragraph>
+      <Heading level={2}>Core Benefits</Heading>
 
       <Grid cols={2}>
-        <Card icon="🎮" title="Gaming & Metaverse">
+        <Card icon="🔒" title="Security">
           <p className="text-gray-400 text-sm mt-2">
-            High-frequency transactions, NFT minting, and in-game economies with instant finality.
+            Ramestta uses Proof-of-Stake consensus with validators staking RAMA tokens. The Heimdall 
+            consensus layer (based on Tendermint) provides Byzantine fault tolerance requiring 2/3+ 
+            validator agreement. Regular checkpoints to Polygon inherit Ethereum's security guarantees.
           </p>
         </Card>
-        <Card icon="💳" title="Payments">
+        <Card icon="🔍" title="Transparency">
           <p className="text-gray-400 text-sm mt-2">
-            Point-of-sale systems, micro-payments, and payment streaming with near-zero fees.
+            All transactions and validator activities are publicly verifiable through RamaScan block explorer. 
+            Smart contract source code can be verified and audited by anyone.
           </p>
         </Card>
-        <Card icon="📊" title="DeFi">
+        <Card icon="⚡" title="Efficiency">
           <p className="text-gray-400 text-sm mt-2">
-            High-frequency trading, yield farming, and complex financial instruments.
+            Transactions achieve finality in approximately 2 seconds. The Bor execution layer processes 
+            blocks with optimized EVM execution, supporting enterprise-grade throughput.
           </p>
         </Card>
-        <Card icon="🏢" title="Enterprise">
+        <Card icon="💰" title="Cost-Effectiveness">
           <p className="text-gray-400 text-sm mt-2">
-            Supply chain, identity, and business applications requiring predictable costs.
+            Transaction fees are minimal and predictable - below $0.01. EIP-1559 implementation ensures 
+            fee predictability while burning the base fee for deflationary tokenomics.
+          </p>
+        </Card>
+        <Card icon="🌐" title="Decentralization">
+          <p className="text-gray-400 text-sm mt-2">
+            The network is maintained by a globally distributed set of validators. Governance proposals 
+            can modify network parameters, ensuring community-driven evolution.
+          </p>
+        </Card>
+        <Card icon="🔧" title="EVM Compatibility">
+          <p className="text-gray-400 text-sm mt-2">
+            100% EVM compatible - all Ethereum tools, wallets, and contracts work seamlessly. Deploy 
+            existing Solidity contracts without any modifications.
           </p>
         </Card>
       </Grid>
 
       <Divider />
 
-      <Heading level={2}>Benefits of Ramestta</Heading>
+      <Heading level={2}>Architecture Components</Heading>
 
-      <Heading level={3}>🔒 Security</Heading>
+      <Heading level={3}>Heimdall - Consensus Layer</Heading>
       <Paragraph>
-        Ramestta employs its own Proof-of-Stake consensus mechanism with validators staking RAMA tokens. 
-        Security is further enhanced through:
+        Heimdall is the heart of the Ramestta network. Based on Tendermint BFT (Byzantine Fault Tolerant) 
+        consensus, it manages:
       </Paragraph>
       <List
         items={[
-          'Heimdall consensus layer based on Tendermint',
-          'Regular checkpoints submitted to Polygon mainnet',
-          'Economic security through staked validator tokens',
-          'Slashing mechanisms for malicious behavior'
+          'Validator set management and staking operations',
+          'Block producer selection for each span',
+          'Checkpoint submission to Polygon',
+          'State synchronization between layers',
+          'Governance proposals and parameter updates'
         ]}
       />
 
-      <Heading level={3}>🔍 Transparency</Heading>
+      <Heading level={3}>Bor - Execution Layer</Heading>
       <Paragraph>
-        All transactions and activities are publicly verifiable through RamaScan explorer. 
-        Smart contract code can be verified and audited by anyone.
+        Bor is the EVM-compatible execution layer that processes all transactions:
       </Paragraph>
+      <List
+        items={[
+          'Full Ethereum Virtual Machine (EVM) compatibility',
+          'Block production following Clique consensus (EIP-225)',
+          'State management and smart contract execution',
+          'State sync from Polygon via system calls'
+        ]}
+      />
 
-      <Heading level={3}>⚡ Efficiency</Heading>
-      <Paragraph>
-        Transactions are processed in approximately 2 seconds with finality. The network 
-        can handle enterprise-grade throughput of 65,000+ transactions per second.
-      </Paragraph>
+      <CodeBlock
+        title="Key Architecture Parameters"
+        language="text"
+        code={`Consensus: Proof-of-Stake (Heimdall + Bor)
+Block Time: ~2 seconds
+Sprint Duration: 16 blocks
+Span Duration: 1600 blocks
+Producer Count: 4 validators per span
+Checkpoint Interval: ~30 minutes to Polygon`}
+      />
 
-      <Heading level={3}>💰 Cost-Effectiveness</Heading>
-      <Paragraph>
-        Gas fees are deterministic and predictable, ranging from $0.0002 to $0.001 per transaction. 
-        This makes Ramestta ideal for applications requiring high transaction volumes.
-      </Paragraph>
+      <Heading level={2}>Use Cases</Heading>
 
-      <Heading level={3}>🌐 Decentralization</Heading>
-      <Paragraph>
-        The network is maintained by a distributed set of validators, ensuring no single entity 
-        can control or manipulate the blockchain.
-      </Paragraph>
-
-      <InfoBox type="info" title="EIP-1559 Support">
-        Ramestta implements EIP-1559 token burning, resulting in more predictable gas fees 
-        and deflationary token economics as network usage increases.
-      </InfoBox>
+      <Grid cols={2}>
+        <Card icon="🎮" title="Gaming & NFTs">
+          <p className="text-gray-400 text-sm mt-2">
+            High-frequency in-game transactions, NFT minting, and trading with instant finality 
+            and minimal costs enable true blockchain gaming experiences.
+          </p>
+        </Card>
+        <Card icon="💳" title="Payments">
+          <p className="text-gray-400 text-sm mt-2">
+            Point-of-sale, micro-payments, and streaming payments become viable with sub-cent 
+            transaction fees and fast confirmation times.
+          </p>
+        </Card>
+        <Card icon="📊" title="DeFi Applications">
+          <p className="text-gray-400 text-sm mt-2">
+            Decentralized exchanges, lending protocols, and yield farming with lower costs 
+            make DeFi accessible to all users.
+          </p>
+        </Card>
+        <Card icon="🏢" title="Enterprise">
+          <p className="text-gray-400 text-sm mt-2">
+            Supply chain tracking, identity management, and business operations benefit from 
+            predictable costs and fast finality.
+          </p>
+        </Card>
+      </Grid>
 
       <Heading level={2}>Current Services</Heading>
 
-      <List
-        items={[
-          <><strong>Ramestta Wallet (RamaPay):</strong> Send, receive, and store assets on the Ramestta network</>,
-          <><strong>RamaBridge:</strong> Cross-network deposits and withdrawals between Polygon and Ramestta</>,
-          <><strong>Staking:</strong> Earn rewards by staking RAMA tokens as a validator or delegator</>,
-          <><strong>RamaSwap:</strong> Decentralized exchange for token swaps</>,
-          <><strong>RamaScan:</strong> Block explorer for transaction and contract verification</>
+      <Table
+        headers={['Service', 'Description', 'URL']}
+        rows={[
+          ['RamaScan', 'Block explorer for transactions, contracts, and validators', 'ramascan.com'],
+          ['RamaBridge', 'Cross-chain asset transfers between Polygon and Ramestta', 'bridge.ramestta.com'],
+          ['RamaSwap', 'Decentralized exchange for token trading', 'swap.ramestta.com'],
+          ['RamaPay', 'Self-custody wallet for RAMA and tokens', 'ramestta.com/ramapay'],
+          ['Staking Portal', 'Validator and delegator staking interface', 'wallet.ramestta.com']
         ]}
       />
 
+      <InfoBox type="info" title="EIP-1559 Token Economics">
+        Ramestta implements EIP-1559, which burns the base fee portion of every transaction. 
+        As network usage increases, more RAMA tokens are burned, creating deflationary pressure 
+        and aligning network usage with token value.
+      </InfoBox>
+
       <InfoBox type="success" title="Next Steps">
-        Ready to start building? Continue to the <strong>Quick Start</strong> guide to deploy 
-        your first contract, or explore the <strong>Architecture</strong> section for deeper 
-        technical understanding.
+        Ready to start building? Continue to the <a href="/docs?page=quickstart" className="text-primary-400 hover:underline">Quick Start</a> guide to deploy 
+        your first contract, or explore the <a href="/docs?page=architecture" className="text-primary-400 hover:underline">Architecture</a> section for deeper 
+        technical understanding of Heimdall and Bor.
       </InfoBox>
     </div>
   );

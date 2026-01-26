@@ -6,7 +6,7 @@ const MainnetPage: React.FC = () => {
 await window.ethereum.request({
   method: 'wallet_addEthereumChain',
   params: [{
-    chainId: '0x52c6', // 21190 in hexadecimal
+    chainId: '0x55a', // 1370 in hexadecimal
     chainName: 'Ramestta Mainnet',
     rpcUrls: ['https://blockchain.ramestta.com'],
     nativeCurrency: {
@@ -28,7 +28,7 @@ const wsProvider = new ethers.WebSocketProvider('wss://ws.ramestta.com');
 
 // Verify connection
 const network = await provider.getNetwork();
-console.log('Chain ID:', network.chainId); // 21190n`;
+console.log('Chain ID:', network.chainId); // 1370n`;
 
   const web3Connection = `import Web3 from 'web3';
 
@@ -37,7 +37,7 @@ const web3 = new Web3('https://blockchain.ramestta.com');
 
 // Verify connection
 const chainId = await web3.eth.getChainId();
-console.log('Chain ID:', chainId); // 21190n`;
+console.log('Chain ID:', chainId); // 1370n`;
 
   return (
     <div>
@@ -45,12 +45,13 @@ console.log('Chain ID:', chainId); // 21190n`;
       
       <div className="flex items-center gap-3 mb-6">
         <Badge variant="success">Production</Badge>
-        <Badge variant="primary">Chain ID: 21190</Badge>
+        <Badge variant="primary">Chain ID: 1370</Badge>
       </div>
 
       <Paragraph>
-        Ramestta Mainnet is the production blockchain network for deploying production-ready 
-        applications. It uses real RAMA tokens and all transactions are permanent and irreversible.
+        Ramestta Mainnet is the production PoS side chain for deploying production-ready 
+        decentralized applications. Built on Polygon's architecture, it uses real RAMA tokens 
+        and all transactions are permanent and irreversible.
       </Paragraph>
 
       <InfoBox type="warning" title="Production Environment">
@@ -64,13 +65,14 @@ console.log('Chain ID:', chainId); // 21190n`;
         headers={['Parameter', 'Value']}
         rows={[
           ['Network Name', 'Ramestta Mainnet'],
-          ['Chain ID', '21190'],
-          ['Chain ID (Hex)', '0x52c6'],
+          ['Chain ID', '1370'],
+          ['Chain ID (Hex)', '0x55a'],
           ['Currency Symbol', 'RAMA'],
           ['Currency Decimals', '18'],
           ['Block Time', '~2 seconds'],
-          ['Consensus', 'Proof-of-Stake (PoS)'],
-          ['EVM Version', 'London'],
+          ['Consensus', 'Heimdall (PoS) + Bor (EVM)'],
+          ['EVM Version', 'London (EIP-1559)'],
+          ['Parent Chain', 'Polygon (Chain ID: 137)'],
         ]}
       />
 
@@ -106,7 +108,7 @@ console.log('Chain ID:', chainId); // 21190n`;
       <Grid cols={2}>
         <Card icon="🔍" title="RamaScan">
           <p className="text-gray-400 text-sm mt-2 mb-3">
-            Official block explorer for Ramestta Mainnet
+            Official block explorer for Ramestta Mainnet - view transactions, blocks, validators, and contracts
           </p>
           <a 
             href="https://ramascan.com" 
@@ -122,6 +124,7 @@ console.log('Chain ID:', chainId); // 21190n`;
             <li>• Transaction tracking</li>
             <li>• Contract verification</li>
             <li>• Token transfers</li>
+            <li>• Validator info</li>
             <li>• API access</li>
           </ul>
         </Card>

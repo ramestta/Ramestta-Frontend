@@ -16,31 +16,37 @@ const BridgeOverviewPage: React.FC = () => {
         The bridge uses a secure checkpoint mechanism to ensure safe and verifiable transfers.
       </Paragraph>
 
-      <div className="bg-gray-800/50 rounded-lg p-6 my-6">
-        <div className="flex items-center justify-between gap-8">
-          <div className="text-center flex-1">
-            <div className="w-16 h-16 bg-indigo-500/20 rounded-xl mx-auto mb-3 flex items-center justify-center">
-              <span className="text-2xl">⬡</span>
+      {/* Bridge Diagram - Mobile Responsive */}
+      <div className="bg-gray-800/50 rounded-lg p-4 sm:p-6 my-6 overflow-x-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 min-w-[280px]">
+          {/* Polygon Network */}
+          <div className="text-center flex-shrink-0">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-500/20 rounded-xl mx-auto mb-2 sm:mb-3 flex items-center justify-center">
+              <span className="text-xl sm:text-2xl">⬡</span>
             </div>
-            <div className="text-white font-semibold">Polygon</div>
-            <div className="text-gray-400 text-sm">L2 Network</div>
+            <div className="text-white font-semibold text-sm sm:text-base">Polygon</div>
+            <div className="text-gray-400 text-xs sm:text-sm">Parent Chain</div>
           </div>
           
-          <div className="flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <div className="w-12 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
-              <div className="text-2xl">🌉</div>
-              <div className="w-12 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500"></div>
+          {/* Bridge Arrow - Rotates on mobile */}
+          <div className="flex-shrink-0 py-2 sm:py-0">
+            <div className="flex sm:flex-row flex-col items-center gap-2">
+              <div className="hidden sm:block w-8 md:w-12 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+              <div className="sm:hidden h-6 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+              <div className="text-xl sm:text-2xl">🌉</div>
+              <div className="hidden sm:block w-8 md:w-12 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500"></div>
+              <div className="sm:hidden h-6 w-0.5 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
             </div>
-            <div className="text-center mt-2 text-sm text-gray-400">RamaBridge</div>
+            <div className="text-center mt-1 sm:mt-2 text-xs sm:text-sm text-gray-400">RamaBridge</div>
           </div>
           
-          <div className="text-center flex-1">
-            <div className="w-16 h-16 bg-purple-500/20 rounded-xl mx-auto mb-3 flex items-center justify-center">
-              <span className="text-2xl">🔷</span>
+          {/* Ramestta Network */}
+          <div className="text-center flex-shrink-0">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-purple-500/20 rounded-xl mx-auto mb-2 sm:mb-3 flex items-center justify-center">
+              <span className="text-xl sm:text-2xl">🔷</span>
             </div>
-            <div className="text-white font-semibold">Ramestta</div>
-            <div className="text-gray-400 text-sm">L3 Network</div>
+            <div className="text-white font-semibold text-sm sm:text-base">Ramestta</div>
+            <div className="text-gray-400 text-xs sm:text-sm">PoS Chain</div>
           </div>
         </div>
       </div>
@@ -84,14 +90,49 @@ const BridgeOverviewPage: React.FC = () => {
 
       <Heading level={2}>Supported Assets</Heading>
 
+      <Paragraph>
+        The following assets can be bridged between Polygon and Ramestta:
+      </Paragraph>
+
       <Table
         headers={['Asset', 'Type', 'Polygon Address', 'Ramestta Address']}
         rows={[
-          ['MATIC', 'Native', 'Native', '0x...mapped'],
-          ['RAMA', 'ERC-20', '0x...polygon', 'Native'],
-          ['USDT', 'ERC-20', '0x...polygon', '0x...ramestta'],
-          ['USDC', 'ERC-20', '0x...polygon', '0x...ramestta'],
-          ['WETH', 'ERC-20', '0x...polygon', '0x...ramestta'],
+          ['RAMA', 'ERC-20', '0x55a5CC06801bBa4C030568f1A7ee1c753FDcbe36', '0x0000...1010 (Native)'],
+          ['WRAMA', 'ERC-20', '0x3413e262742c22BeEd13f778C26cacBd726C3aa8', '0x27d20dE66C83d5C...'],
+          ['Custom ERC-20', 'ERC-20', 'Mapped via bridge', 'Mapped via bridge'],
+          ['ERC-721 NFTs', 'NFT', 'Mapped via predicate', 'Mapped via predicate'],
+        ]}
+      />
+
+      <InfoBox type="info" title="Token Mapping">
+        Custom tokens need to be mapped before they can be bridged. Contact the Ramestta team 
+        to request token mapping for your project.
+      </InfoBox>
+
+      <Heading level={2}>Bridge Contract Addresses</Heading>
+
+      <Heading level={3}>Polygon (L2 Parent Chain)</Heading>
+
+      <Table
+        headers={['Contract', 'Address']}
+        rows={[
+          ['RootChainProxy', '0x32BC23e5FFf7D567313dB4F41A5125Ad9D9Bca63'],
+          ['DepositManagerProxy', '0x81ebFB0c73d3165c4719E9604cDa55eF91226dAf'],
+          ['WithdrawManagerProxy', '0x6e07F852bAC263492e8C710dB7c0d59275268db8'],
+          ['StateSender', '0xE0C9051E655380D1d880b9B0f4b500cEbD09278f'],
+          ['ERC20Predicate', '0xC0dA09523c92714d0Df17e72966B3B80f228df8e'],
+          ['ERC721Predicate', '0x02F08C48DaB9739C49A1F6C681B32fEFeCa9F1A9'],
+        ]}
+      />
+
+      <Heading level={3}>Ramestta (L3 Network)</Heading>
+
+      <Table
+        headers={['Contract', 'Address']}
+        rows={[
+          ['ChildChain', '0x0000000000000000000000000000000000001001'],
+          ['StateReceiver', '0x0000000000000000000000000000000000001001'],
+          ['MRC20 (RAMA)', '0x0000000000000000000000000000000000001010'],
         ]}
       />
 
@@ -217,7 +258,7 @@ console.log('Deposit initiated:', tx.hash);`}
         items={[
           <><strong>Deposit not arriving:</strong> Wait 10-15 minutes. Check transaction on Polygon explorer.</>,
           <><strong>Withdrawal stuck:</strong> Wait for next checkpoint (~30 min). Verify on RamaScan.</>,
-          <><strong>Claim failing:</strong> Ensure you have MATIC for gas on Polygon.</>,
+          <><strong>Claim failing:</strong> Ensure you have POL for gas on Polygon.</>,
           <><strong>Token not showing:</strong> Add token contract address manually to your wallet.</>
         ]}
       />
