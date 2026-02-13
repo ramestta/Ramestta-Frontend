@@ -197,34 +197,34 @@ const SwapPage: React.FC = () => {
             <p className="text-xl text-gray-300">Instant liquidity for RAMA and major assets</p>
           </div>
           <div className="max-w-5xl mx-auto">
-            <div className="overflow-x-auto">
-              <table className="w-full bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-700">
+            <div className="overflow-x-auto -mx-3 sm:mx-0" style={{WebkitOverflowScrolling: 'touch', scrollbarWidth: 'thin', scrollbarColor: '#4B5563 #1F2937'}}>
+              <table className="w-full min-w-[550px] bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-700">
                 <thead className="bg-gray-800/50">
                   <tr className="border-b border-gray-700">
-                    <th className="text-left py-4 px-6 font-semibold text-white">Pair</th>
-                    <th className="text-left py-4 px-6 font-semibold text-white">TVL</th>
-                    <th className="text-left py-4 px-6 font-semibold text-white">24h Volume</th>
-                    <th className="text-left py-4 px-6 font-semibold text-white">Action</th>
+                    <th className="text-left py-3 sm:py-4 px-3 sm:px-6 font-semibold text-white text-xs sm:text-sm whitespace-nowrap">Pair</th>
+                    <th className="text-left py-3 sm:py-4 px-3 sm:px-6 font-semibold text-white text-xs sm:text-sm whitespace-nowrap">TVL</th>
+                    <th className="text-left py-3 sm:py-4 px-3 sm:px-6 font-semibold text-white text-xs sm:text-sm whitespace-nowrap">24h Volume</th>
+                    <th className="text-left py-3 sm:py-4 px-3 sm:px-6 font-semibold text-white text-xs sm:text-sm whitespace-nowrap">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {tokenPairs.map((pair, index) => (
                     <tr key={index} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="py-4 px-6">
+                      <td className="py-3 sm:py-4 px-3 sm:px-6 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
-                          <span className="font-bold text-white">{pair.base}</span>
-                          <ArrowLeftRight className="text-primary-400" size={16} />
-                          <span className="font-bold text-white">{pair.quote}</span>
+                          <span className="font-bold text-white text-xs sm:text-sm">{pair.base}</span>
+                          <ArrowLeftRight className="text-primary-400" size={14} />
+                          <span className="font-bold text-white text-xs sm:text-sm">{pair.quote}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-green-400 font-semibold">{pair.tvl}</td>
-                      <td className="py-4 px-6 text-gray-300 font-medium">{pair.volume24h}</td>
-                      <td className="py-4 px-6">
+                      <td className="py-3 sm:py-4 px-3 sm:px-6 text-green-400 font-semibold whitespace-nowrap text-xs sm:text-sm">{pair.tvl}</td>
+                      <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-300 font-medium whitespace-nowrap text-xs sm:text-sm">{pair.volume24h}</td>
+                      <td className="py-3 sm:py-4 px-3 sm:px-6 whitespace-nowrap">
                         <a
                           href="https://ramaswap.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary-400 hover:text-primary-300 font-medium"
+                          className="text-primary-400 hover:text-primary-300 font-medium text-xs sm:text-sm"
                         >
                           Trade →
                         </a>

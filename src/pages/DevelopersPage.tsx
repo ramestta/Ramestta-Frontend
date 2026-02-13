@@ -717,32 +717,32 @@ await posClient.init({
           
           <div className="max-w-4xl mx-auto space-y-8">
             {/* SDK Packages Table */}
-            <div className="card p-6">
-              <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+            <div className="card p-3 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center">
                 <Package className="mr-3 text-primary-400" size={24} />
                 Available Packages
               </h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+              <div className="overflow-x-auto -mx-3 sm:mx-0" style={{WebkitOverflowScrolling: 'touch', scrollbarWidth: 'thin', scrollbarColor: '#4B5563 #1F2937'}}>
+                <table className="w-full min-w-[600px] text-sm">
                   <thead>
                     <tr className="border-b border-gray-700">
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Package</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Version</th>
-                      <th className="text-left py-3 px-4 text-gray-400 font-medium">Description</th>
-                      <th className="text-right py-3 px-4 text-gray-400 font-medium">Link</th>
+                      <th className="text-left py-3 px-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">Package</th>
+                      <th className="text-left py-3 px-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">Version</th>
+                      <th className="text-left py-3 px-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">Description</th>
+                      <th className="text-right py-3 px-3 sm:px-4 text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">Link</th>
                     </tr>
                   </thead>
                   <tbody>
                     {sdkPackages.map((pkg, index) => (
                       <tr key={index} className="border-b border-gray-800 hover:bg-gray-800/50 transition-colors">
-                        <td className="py-3 px-4">
-                          <code className="text-primary-400 font-mono">{pkg.name}</code>
+                        <td className="py-3 px-3 sm:px-4 whitespace-nowrap">
+                          <code className="text-primary-400 font-mono text-xs sm:text-sm">{pkg.name}</code>
                         </td>
-                        <td className="py-3 px-4">
+                        <td className="py-3 px-3 sm:px-4 whitespace-nowrap">
                           <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-medium">{pkg.version}</span>
                         </td>
-                        <td className="py-3 px-4 text-gray-300">{pkg.desc}</td>
-                        <td className="py-3 px-4 text-right">
+                        <td className="py-3 px-3 sm:px-4 text-gray-300 text-xs sm:text-sm whitespace-nowrap">{pkg.desc}</td>
+                        <td className="py-3 px-3 sm:px-4 text-right whitespace-nowrap">
                           <a
                             href={pkg.url}
                             target="_blank"
