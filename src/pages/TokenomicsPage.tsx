@@ -82,7 +82,7 @@ const TokenomicsPage: React.FC = () => {
   ];
 
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}

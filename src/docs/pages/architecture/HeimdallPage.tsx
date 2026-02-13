@@ -407,6 +407,137 @@ Max Bytes Per Block: 22,020,096 (21 MB)
         Learn about the <a href="/docs?page=bor" className="text-primary-400 hover:underline">Bor execution layer</a> or 
         explore <a href="/docs?page=contracts" className="text-primary-400 hover:underline">smart contract deployment</a>.
       </InfoBox>
+
+      <Divider />
+
+      <Heading level={2}>Network Configuration</Heading>
+
+      <Paragraph>
+        Use the following details to connect to the Ramestta network for Heimdall node operations 
+        and development.
+      </Paragraph>
+
+      <Heading level={3}>Mainnet</Heading>
+
+      <Table
+        headers={['Parameter', 'Value']}
+        rows={[
+          ['Network Name', 'Ramestta Mainnet'],
+          ['Chain ID', '1370'],
+          ['Chain ID (Hex)', '0x55a'],
+          ['Currency Symbol', 'RAMA'],
+          ['Decimals', '18'],
+          ['RPC URL (Primary)', 'https://blockchain.ramestta.com'],
+          ['RPC URL (Backup)', 'https://blockchain2.ramestta.com'],
+          ['Block Explorer', 'https://ramascan.com'],
+          ['Network Type', 'Layer-3'],
+          ['Block Time', '~2 seconds'],
+          ['Consensus', 'Proof-of-Stake (Heimdall + Bor)'],
+        ]}
+      />
+
+      <Heading level={3}>Testnet (Pingaksha)</Heading>
+
+      <Table
+        headers={['Parameter', 'Value']}
+        rows={[
+          ['Network Name', 'Ramestta Testnet (Pingaksha)'],
+          ['Chain ID', '1371'],
+          ['Chain ID (Hex)', '0x55b'],
+          ['Currency Symbol', 'RAMA'],
+          ['RPC URL', 'https://testnet.ramestta.com'],
+          ['Block Explorer', 'https://pingaksha.ramascan.com'],
+          ['API', 'https://testbackendapi.ramascan.com'],
+          ['Faucet', 'https://testnet-faucet.ramascan.com'],
+        ]}
+      />
+
+      <Heading level={3}>MetaMask Configuration</Heading>
+
+      <CodeBlock
+        title="Add Ramestta Mainnet to MetaMask"
+        language="typescript"
+        code={`await window.ethereum.request({
+  method: 'wallet_addEthereumChain',
+  params: [{
+    chainId: '0x55a',
+    chainName: 'Ramestta Mainnet',
+    nativeCurrency: {
+      name: 'RAMA',
+      symbol: 'RAMA',
+      decimals: 18
+    },
+    rpcUrls: [
+      'https://blockchain.ramestta.com',
+      'https://blockchain2.ramestta.com'
+    ],
+    blockExplorerUrls: ['https://ramascan.com']
+  }]
+});`}
+      />
+
+      <CodeBlock
+        title="Add Ramestta Testnet to MetaMask"
+        language="typescript"
+        code={`await window.ethereum.request({
+  method: 'wallet_addEthereumChain',
+  params: [{
+    chainId: '0x55b',
+    chainName: 'Ramestta Testnet (Pingaksha)',
+    nativeCurrency: {
+      name: 'RAMA',
+      symbol: 'RAMA',
+      decimals: 18
+    },
+    rpcUrls: ['https://testnet.ramestta.com'],
+    blockExplorerUrls: ['https://pingaksha.ramascan.com']
+  }]
+});`}
+      />
+
+      <Divider />
+
+      <Heading level={2}>Heimdall Node Ports</Heading>
+
+      <Table
+        headers={['Port', 'Service', 'Description']}
+        rows={[
+          ['26656', 'P2P', 'Tendermint peer-to-peer communication'],
+          ['26657', 'RPC', 'Tendermint RPC endpoint'],
+          ['1317', 'REST API', 'Cosmos REST/LCD server'],
+          ['8545', 'Bor RPC', 'EVM JSON-RPC (Bor node)'],
+          ['8546', 'Bor WebSocket', 'Bor WebSocket endpoint'],
+        ]}
+      />
+
+      <Heading level={2}>Heimdall REST Endpoints</Heading>
+
+      <CodeBlock
+        title="Useful Heimdall REST Queries"
+        language="bash"
+        code={`# Check node status
+curl http://localhost:26657/status
+
+# Get latest block
+curl http://localhost:26657/block
+
+# Get validator set
+curl http://localhost:1317/staking/validator-set
+
+# Get latest checkpoint
+curl http://localhost:1317/checkpoints/latest
+
+# Get account balance
+curl http://localhost:1317/auth/accounts/<address>
+
+# Get span details
+curl http://localhost:1317/bor/span/<span-id>`}
+      />
+
+      <InfoBox type="info" title="Full Deployment Guide">
+        For step-by-step Heimdall and Bor node setup, see the{' '}
+        <a href="/docs?page=become-validator" className="text-primary-400 hover:underline">Become a Validator</a> guide.
+      </InfoBox>
     </div>
   );
 };

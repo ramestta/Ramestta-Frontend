@@ -88,7 +88,7 @@ const Login: React.FC = () => {
                         >
                             <div className="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-10 h-full hover:bg-slate-800/70 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10">
                                 {/* Gradient Border Effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none"></div>
 
                                 <div className="relative z-10">
                                     <div className="flex items-center justify-between mb-8">
@@ -138,7 +138,7 @@ const Login: React.FC = () => {
                         >
                             <div className="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-10 h-full hover:bg-slate-800/70 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/10">
                                 {/* Gradient Border Effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none"></div>
 
                                 <div className="relative z-10">
                                     <div className="flex items-center justify-between mb-8">
@@ -191,7 +191,7 @@ const Login: React.FC = () => {
             <div className="max-w-md w-full">
                 <div className="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-10 shadow-2xl">
                     {/* Gradient Background Effect */}
-                    <div className={`absolute inset-0 rounded-3xl opacity-10 ${selectedRole === 'admin'
+                    <div className={`absolute inset-0 rounded-3xl opacity-10 pointer-events-none ${selectedRole === 'admin'
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500'
                         : 'bg-gradient-to-r from-blue-500 to-cyan-500'
                         }`}></div>
@@ -300,7 +300,7 @@ const Login: React.FC = () => {
                                 >
                                     ← Back to selection
                                 </button>
-                                <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-sm font-medium">
+                                <a href="/contact" className="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-sm font-medium">
                                     Forgot password?
                                 </a>
                             </div>
@@ -330,7 +330,7 @@ const Login: React.FC = () => {
                         <div className="mt-8 text-center">
                             <p className="text-slate-400 text-sm">
                                 Don't have an account?{' '}
-                                <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium">
+                                <a href="/contact" className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-medium">
                                     Request access
                                 </a>
                             </p>

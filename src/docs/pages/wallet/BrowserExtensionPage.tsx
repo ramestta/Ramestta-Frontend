@@ -242,7 +242,7 @@ async function sendTransaction(to, amountInRama) {
         headers={['Network', 'Chain ID', 'RPC URL', 'Explorer']}
         rows={[
           ['Ramestta Mainnet', '1370', 'https://blockchain.ramestta.com', 'https://ramascan.com'],
-          ['Ramestta Testnet', '1371', 'https://testnet.ramestta.com', 'https://testnet.ramascan.com'],
+          ['Ramestta Testnet', '1371', 'https://testnet.ramestta.com', 'https://pingaksha.ramascan.com'],
           ['Polygon Mainnet', '137', 'https://polygon-rpc.com', 'https://polygonscan.com'],
           ['Ethereum Mainnet', '1', 'https://eth.llamarpc.com', 'https://etherscan.io'],
         ]}

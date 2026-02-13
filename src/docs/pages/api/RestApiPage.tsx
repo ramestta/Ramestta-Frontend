@@ -24,7 +24,7 @@ const RestApiPage: React.FC = () => {
         headers={['Environment', 'Base URL', 'Explorer']}
         rows={[
           ['Mainnet', 'https://www.ramascan.com/api', 'https://www.ramascan.com'],
-          ['Testnet', 'https://testnet.ramascan.com/api', 'https://testnet.ramascan.com'],
+          ['Testnet', 'https://testbackendapi.ramascan.com', 'https://pingaksha.ramascan.com'],
         ]}
       />
 
@@ -252,8 +252,8 @@ module.exports = {
         network: 'ramesttaTestnet',
         chainId: 1371,
         urls: {
-          apiURL: 'https://testnet.ramascan.com/api',
-          browserURL: 'https://testnet.ramascan.com'
+          apiURL: 'https://testbackendapi.ramascan.com',
+          browserURL: 'https://pingaksha.ramascan.com'
         }
       }
     ]

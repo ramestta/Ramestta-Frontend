@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowLeftRight, Shield, Zap, TrendingUp, DollarSign, Droplets, Lock, ExternalLink, Code, Award } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 
@@ -87,7 +88,7 @@ const SwapPage: React.FC = () => {
   ];
 
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}
@@ -155,9 +156,14 @@ const SwapPage: React.FC = () => {
               <ArrowLeftRight className="mr-2" size={20} />
               Launch Swap
             </a>
-            <button className="btn-secondary">
+            <a
+              href="https://ramaswap.com/#/pools"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
               View Pools
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -392,19 +398,19 @@ const SwapPage: React.FC = () => {
               <Code className="text-primary-400 mx-auto mb-6" size={48} />
               <h3 className="text-xl font-bold text-white mb-4">Router & Quoter API</h3>
               <p className="text-gray-300 mb-6">REST and GraphQL endpoints for best-price routing and quote generation</p>
-              <button className="btn-secondary text-sm">View Docs</button>
+              <Link to="/docs?page=sdk-overview" className="btn-secondary text-sm">View Docs</Link>
             </div>
             <div className="card p-8 text-center">
               <Shield className="text-green-400 mx-auto mb-6" size={48} />
               <h3 className="text-xl font-bold text-white mb-4">SDK & Templates</h3>
               <p className="text-gray-300 mb-6">TypeScript SDK with pool creation templates and swap helpers</p>
-              <button className="btn-secondary text-sm">Get Started</button>
+              <Link to="/docs?page=quick-start" className="btn-secondary text-sm">Get Started</Link>
             </div>
             <div className="card p-8 text-center">
               <Droplets className="text-secondary-400 mx-auto mb-6" size={48} />
               <h3 className="text-xl font-bold text-white mb-4">Analytics & Indexing</h3>
               <p className="text-gray-300 mb-6">Subgraph support for The Graph and real-time event streaming</p>
-              <button className="btn-secondary text-sm">Explore API</button>
+              <Link to="/docs?page=rest-api" className="btn-secondary text-sm">Explore API</Link>
             </div>
           </div>
         </div>
@@ -426,9 +432,14 @@ const SwapPage: React.FC = () => {
             >
               Launch Swap <ExternalLink className="ml-2" size={16} />
             </a>
-            <button className="btn-secondary">
+            <a
+              href="https://ramaswap.com/#/pools"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
               Provide Liquidity
-            </button>
+            </a>
           </div>
         </div>
       </section>

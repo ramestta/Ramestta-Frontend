@@ -1211,7 +1211,7 @@ Ramestta represents a significant advancement in blockchain technology, deliveri
 ### For Developers
 
 **Build on Ramestta:**
-1. Visit docs.ramestta.com
+1. Visit the Documentation
 2. Join Discord community
 3. Apply for grants
 4. Deploy your dApp
@@ -1299,7 +1299,7 @@ Thank you for taking the time to read this whitepaper. We're excited about the f
 
 **Learn More:**
 - Website: https://ramestta.com
-- Documentation: https://docs.ramestta.com
+- Documentation: /docs?page=welcome
 - Blog: https://ramestta.com/blog
 - GitHub: https://github.com/Ramestta-Blockchain
 
@@ -1816,7 +1816,7 @@ function batchTransfer(
 ## Developer Support
 
 ### Documentation
-- 📚 **Comprehensive Docs**: docs.ramestta.com
+- 📚 **Comprehensive Docs**: /docs?page=welcome
 - 📖 **Tutorials**: Step-by-step guides
 - 🎥 **Video Content**: YouTube channel
 - 📝 **Blog Posts**: Technical deep-dives
@@ -1866,7 +1866,7 @@ function batchTransfer(
 
 Ramestta provides the smoothest developer experience in the Layer-3 ecosystem. With 100% EVM equivalence, comprehensive tooling support, and extensive documentation, migrating from Ethereum or Polygon is as simple as changing an RPC endpoint.
 
-**Ready to migrate?** Visit our [Developer Portal](https://docs.ramestta.com) to get started today.`
+**Ready to migrate?** Visit our [Developer Portal](/docs?page=welcome) to get started today.`
   }
 ];
 

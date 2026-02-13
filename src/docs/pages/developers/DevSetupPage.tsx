@@ -190,11 +190,13 @@ npm install @ramestta/staking-sdk @ramestta/bridge-sdk`}
       <Table
         headers={['Parameter', 'Mainnet', 'Testnet']}
         rows={[
-          ['Network Name', 'Ramestta Mainnet', 'Ramestta Testnet'],
+          ['Network Name', 'Ramestta Mainnet', 'Pingaksha Testnet'],
           ['RPC URL', 'https://blockchain.ramestta.com', 'https://testnet.ramestta.com'],
           ['Chain ID', '1370', '1371'],
           ['Symbol', 'RAMA', 'RAMA'],
-          ['Explorer', 'https://ramascan.com', 'https://testnet.ramascan.com']
+          ['Explorer', 'https://ramascan.com', 'https://pingaksha.ramascan.com'],
+          ['API', 'https://ramascan.com/api', 'https://testbackendapi.ramascan.com'],
+          ['Faucet', 'N/A', 'https://testnet-faucet.ramascan.com']
         ]}
       />
 
@@ -234,7 +236,7 @@ async function addRamesttaNetwork() {
       <List
         ordered
         items={[
-          'Visit the Ramestta Faucet at https://faucet.ramestta.com',
+          'Visit the Ramestta Faucet at https://testnet-faucet.ramascan.com',
           'Connect your wallet or enter your address',
           'Request test tokens (limited per 24 hours)',
           'Wait for the transaction to confirm'

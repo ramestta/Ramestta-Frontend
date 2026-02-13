@@ -128,8 +128,11 @@ const rpcCall = async (method: string, params: any[] = []) => {
       <Table
         headers={['Type', 'URL']}
         rows={[
-          ['HTTP', 'https://testnet.ramestta.com'],
+          ['HTTP RPC', 'https://testnet.ramestta.com'],
           ['WebSocket', 'wss://testnet.ramestta.com/ws'],
+          ['Block Explorer', 'https://pingaksha.ramascan.com'],
+          ['Backend API', 'https://testbackendapi.ramascan.com'],
+          ['Faucet', 'https://testnet-faucet.ramascan.com'],
         ]}
       />
 

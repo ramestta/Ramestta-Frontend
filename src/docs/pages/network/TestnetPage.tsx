@@ -14,13 +14,13 @@ await window.ethereum.request({
       symbol: 'RAMA',
       decimals: 18
     },
-    blockExplorerUrls: ['https://testnet.ramascan.com']
+    blockExplorerUrls: ['https://pingaksha.ramascan.com']
   }]
 });`;
 
   const faucetCode = `// Request test tokens programmatically (if API available)
 const requestTestTokens = async (address: string) => {
-  const response = await fetch('https://faucet.ramestta.com/api/request', {
+  const response = await fetch('https://testnet-faucet.ramascan.com/api/request', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ address })
@@ -81,6 +81,18 @@ if (network.chainId !== 1371n) {
         ]}
       />
 
+      <Heading level={2}>Testnet Endpoints</Heading>
+
+      <Table
+        headers={['Service', 'URL']}
+        rows={[
+          ['RPC', 'https://testnet.ramestta.com'],
+          ['Block Explorer', 'https://pingaksha.ramascan.com'],
+          ['Backend API', 'https://testbackendapi.ramascan.com'],
+          ['Faucet', 'https://testnet-faucet.ramascan.com'],
+        ]}
+      />
+
       <Heading level={2}>RPC Endpoints</Heading>
 
       <Table
@@ -98,12 +110,12 @@ if (network.chainId !== 1371n) {
           Block explorer for Pingaksha Testnet
         </p>
         <a 
-          href="https://testnet-ramascan.ramestta.com" 
+          href="https://pingaksha.ramascan.com" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-primary hover:underline text-sm"
         >
-          https://testnet-ramascan.ramestta.com →
+          https://pingaksha.ramascan.com →
         </a>
       </Card>
 
@@ -121,12 +133,12 @@ if (network.chainId !== 1371n) {
             Request test RAMA tokens every 24 hours
           </p>
           <a 
-            href="https://faucet.ramestta.com" 
+            href="https://testnet-faucet.ramascan.com" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-primary hover:underline text-sm"
           >
-            https://faucet.ramestta.com →
+            https://testnet-faucet.ramascan.com →
           </a>
         </Card>
         <Card icon="📝" title="How to Use">
@@ -161,10 +173,12 @@ if (network.chainId !== 1371n) {
       <Table
         headers={['Feature', 'Testnet', 'Mainnet']}
         rows={[
-          ['Chain ID', '21191', '21190'],
+          ['Chain ID', '1371', '1370'],
+          ['RPC', 'https://testnet.ramestta.com', 'https://blockchain.ramestta.com'],
+          ['Block Explorer', 'https://pingaksha.ramascan.com', 'https://ramascan.com'],
+          ['API', 'https://testbackendapi.ramascan.com', 'https://ramascan.com/api'],
+          ['Faucet', 'https://testnet-faucet.ramascan.com', 'N/A'],
           ['Token Value', 'No value', 'Real value'],
-          ['Faucet', 'Available', 'N/A'],
-          ['Block Explorer', 'testnet-ramascan.ramestta.com', 'ramascan.com'],
           ['Use Case', 'Development & Testing', 'Production'],
           ['Network Stability', 'May be reset', 'Permanent'],
         ]}

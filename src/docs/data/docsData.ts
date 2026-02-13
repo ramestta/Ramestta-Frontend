@@ -381,9 +381,11 @@ export const networkConfig = {
       decimals: 18
     },
     rpcUrls: ['https://testnet.ramestta.com'],
-    blockExplorerUrls: ['https://testnet.ramascan.com'],
+    blockExplorerUrls: ['https://pingaksha.ramascan.com'],
+    apiUrl: 'https://testbackendapi.ramascan.com',
+    faucetUrl: 'https://testnet-faucet.ramascan.com',
     networkType: 'Layer-3',
-    parentChain: 'Polygon Mumbai',
+    parentChain: 'Polygon Amoy (Chain ID: 80002)',
     blockTime: '~2 seconds',
     consensus: 'Proof-of-Stake'
   }
@@ -486,7 +488,7 @@ export const contractAddresses = {
 // Useful Links
 export const usefulLinks = {
   website: 'https://ramestta.com',
-  docs: 'https://docs.ramestta.com',
+  docs: '/docs?page=welcome',
   explorer: 'https://ramascan.com',
   bridge: 'https://ramabridge.com',
   swap: 'https://ramaswap.com',

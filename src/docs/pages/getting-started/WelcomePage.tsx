@@ -236,19 +236,24 @@ Currency Symbol: RAMA
 Block Explorer: https://ramascan.com
 
 // Testnet Configuration  
-Network Name: Ramestta Testnet
+Network Name: Pingaksha Testnet
 RPC URL: https://testnet.ramestta.com
 Chain ID: 1371
 Currency Symbol: RAMA
-Block Explorer: https://testnet.ramascan.com`}
+Block Explorer: https://pingaksha.ramascan.com
+Backend API: https://testbackendapi.ramascan.com
+Faucet: https://testnet-faucet.ramascan.com`}
       />
 
       <InfoBox type="warning" title="Important Links">
         <ul className="list-disc list-inside space-y-1 text-sm">
           <li>Official Website: <a href="https://ramestta.com" className="text-primary-400 hover:underline">ramestta.com</a></li>
-          <li>Documentation: <a href="https://docs.ramestta.com" className="text-primary-400 hover:underline">docs.ramestta.com</a></li>
+          <li>Documentation: <a href="/docs?page=welcome" className="text-primary-400 hover:underline">Documentation</a></li>
           <li>GitHub: <a href="https://github.com/ramestta" className="text-primary-400 hover:underline">github.com/ramestta</a></li>
           <li>npm Packages: <a href="https://www.npmjs.com/org/ramestta" className="text-primary-400 hover:underline">npmjs.com/org/ramestta</a></li>
+          <li>Testnet Explorer: <a href="https://pingaksha.ramascan.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">pingaksha.ramascan.com</a></li>
+          <li>Testnet API: <a href="https://testbackendapi.ramascan.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">testbackendapi.ramascan.com</a></li>
+          <li>Testnet Faucet: <a href="https://testnet-faucet.ramascan.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">testnet-faucet.ramascan.com</a></li>
         </ul>
       </InfoBox>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Shield, Server, TrendingUp, Settings, CheckCircle, AlertCircle, Cpu, HardDrive, Wifi, Zap, DollarSign, Clock, Users, Lock, AlertTriangle, HelpCircle, ChevronDown, ChevronUp, Award, BarChart3 } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import { useState } from 'react';
@@ -8,7 +9,7 @@ const ValidatorPage: React.FC = () => {
   
   // Cube background component
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}
@@ -261,10 +262,10 @@ const ValidatorPage: React.FC = () => {
               <Shield className="mr-2" size={20} />
               Validator Portal
             </a>
-            <button className="btn-secondary">
+            <Link to="/docs?page=become-validator" className="btn-secondary">
               <Settings className="mr-2" size={20} />
               Setup Guide
-            </button>
+            </Link>
           </div>
         </div>
       </section>

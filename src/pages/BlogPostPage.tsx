@@ -178,15 +178,30 @@ const BlogPostPage: React.FC = () => {
             <div className="mt-8 p-6 bg-gray-900/50 rounded-xl border border-gray-700">
               <h3 className="text-xl font-semibold text-white mb-4">Share this article</h3>
               <div className="flex gap-4">
-                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://ramestta.com/blog/${post.id}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                >
                   Twitter
-                </button>
-                <button className="px-6 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition-colors">
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://ramestta.com/blog/${post.id}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition-colors"
+                >
                   Facebook
-                </button>
-                <button className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                </a>
+                <a
+                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://ramestta.com/blog/${post.id}`)}&title=${encodeURIComponent(post.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                >
                   LinkedIn
-                </button>
+                </a>
               </div>
             </div>
           </div>

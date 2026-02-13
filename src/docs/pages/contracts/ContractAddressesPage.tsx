@@ -105,8 +105,8 @@ const ContractAddressesPage: React.FC = () => {
 
       <InfoBox type="info" title="Getting Testnet Tokens">
         Get free test RAMA tokens from the faucet at{' '}
-        <a href="https://faucet.ramestta.com" target="_blank" rel="noopener noreferrer" className="text-primary">
-          faucet.ramestta.com
+        <a href="https://testnet-faucet.ramascan.com" target="_blank" rel="noopener noreferrer" className="text-primary">
+          testnet-faucet.ramascan.com
         </a>
       </InfoBox>
 

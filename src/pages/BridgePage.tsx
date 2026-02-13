@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowLeftRight, Shield, Zap, Eye, ExternalLink, TrendingUp, DollarSign } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 
@@ -76,7 +77,7 @@ const BridgePage: React.FC = () => {
   ];
   // Cube background component
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}
@@ -147,9 +148,9 @@ const BridgePage: React.FC = () => {
               <ArrowLeftRight className="mr-2" size={20} />
               Launch Bridge
             </a>
-            <button className="btn-secondary">
+            <Link to="/docs?page=bridge-overview" className="btn-secondary">
               View Tutorial
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -720,9 +721,9 @@ const BridgePage: React.FC = () => {
             >
               Launch Bridge <ExternalLink className="ml-2" size={16} />
             </a>
-            <button className="btn-secondary">
+            <Link to="/docs?page=bridge-overview" className="btn-secondary">
               View Documentation
-            </button>
+            </Link>
           </div>
         </div>
       </section>

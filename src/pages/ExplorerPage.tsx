@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import {
   Search,
   Activity,
@@ -203,7 +204,7 @@ const ExplorerPage: React.FC = () => {
               <Search className="mr-2" size={20} />
               Browse Ramascan
             </a>
-            <button className="btn-secondary">API Documentation</button>
+            <Link to="/docs?page=rest-api" className="btn-secondary">API Documentation</Link>
           </div>
         </div>
       </section>
@@ -595,7 +596,7 @@ etherscan: {
               <p className="text-gray-300 mb-6">
                 Real-time blockchain events and notifications
               </p>
-              <button className="btn-secondary">WebSocket Docs</button>
+              <Link to="/docs?page=json-rpc" className="btn-secondary">WebSocket Docs</Link>
             </div>
           </div>
         </div>
@@ -619,7 +620,7 @@ etherscan: {
             >
               Launch Explorer <ExternalLink className="ml-2" size={16} />
             </a>
-            <button className="btn-secondary">Developer Guide</button>
+            <Link to="/docs?page=dev-setup" className="btn-secondary">Developer Guide</Link>
           </div>
         </div>
       </section>

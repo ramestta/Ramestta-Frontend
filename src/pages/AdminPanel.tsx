@@ -357,7 +357,7 @@ const AdminPanel: React.FC = () => {
                       color === 'purple' ? 'from-purple-500/5 to-pink-500/5' :
                         color === 'orange' ? 'from-orange-500/5 to-red-500/5' :
                           'from-cyan-500/5 to-blue-500/5'
-                    } rounded-xl sm:rounded-2xl`}></div>
+                    } rounded-xl sm:rounded-2xl pointer-events-none`}></div>
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-3 sm:mb-4">
                       <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${color === 'blue' ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20' :

@@ -30,7 +30,7 @@ const RemixGuidePage: React.FC = () => {
           ['RPC URL', 'https://blockchain.ramestta.com', 'https://testnet.ramestta.com'],
           ['Chain ID', '1370', '1371'],
           ['Currency Symbol', 'RAMA', 'RAMA'],
-          ['Block Explorer', 'https://ramascan.com', 'https://testnet.ramascan.com']
+          ['Block Explorer', 'https://ramascan.com', 'https://pingaksha.ramascan.com']
         ]}
       />
 

@@ -80,8 +80,8 @@ module.exports = {
         network: "ramesttaTestnet",
         chainId: 1371,
         urls: {
-          apiURL: "https://testnet.ramascan.com/api",
-          browserURL: "https://testnet.ramascan.com"
+          apiURL: "https://testbackendapi.ramascan.com",
+          browserURL: "https://pingaksha.ramascan.com"
         }
       }
     ]

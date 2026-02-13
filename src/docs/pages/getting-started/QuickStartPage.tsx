@@ -160,14 +160,24 @@ module.exports = {
     apiKey: {
       ramestta: "YOUR_RAMASCAN_API_KEY"
     },
-    customChains: [{
-      network: "ramestta",
-      chainId: 1370,
-      urls: {
-        apiURL: "https://ramascan.com/api",
-        browserURL: "https://ramascan.com"
+    customChains: [
+      {
+        network: "ramestta",
+        chainId: 1370,
+        urls: {
+          apiURL: "https://ramascan.com/api",
+          browserURL: "https://ramascan.com"
+        }
+      },
+      {
+        network: "ramestatestnet",
+        chainId: 1371,
+        urls: {
+          apiURL: "https://testbackendapi.ramascan.com",
+          browserURL: "https://pingaksha.ramascan.com"
+        }
       }
-    }]
+    ]
   }
 };`;
 

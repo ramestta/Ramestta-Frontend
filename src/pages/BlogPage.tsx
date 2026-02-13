@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Tag, BookOpen, Code, Coins, Gamepad2, Building2, Users } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import SEO from '../components/SEO';
 import { breadcrumbSchema } from '../utils/structuredData';
 import { blogPosts, featuredPost } from '../data/blogData';
+import toast from 'react-hot-toast';
 
 const BlogPage: React.FC = () => {
 
@@ -66,7 +67,7 @@ const BlogPage: React.FC = () => {
   ];
   // Cube background component
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}
@@ -325,10 +326,23 @@ const BlogPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
+                id="newsletter-email"
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
-              <button className="btn-primary whitespace-nowrap">
+              <button
+                onClick={() => {
+                  const input = document.getElementById('newsletter-email') as HTMLInputElement;
+                  const email = input?.value?.trim();
+                  if (!email || !email.includes('@')) {
+                    toast.error('Please enter a valid email address');
+                    return;
+                  }
+                  toast.success('Thank you for subscribing!');
+                  if (input) input.value = '';
+                }}
+                className="btn-primary whitespace-nowrap"
+              >
                 Subscribe
               </button>
             </div>

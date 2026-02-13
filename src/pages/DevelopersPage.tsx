@@ -255,7 +255,8 @@
 
 
 import React, { useState } from 'react';
-import { Code, Book, Github, Zap, CheckCircle, ExternalLink, Package, Copy, Terminal, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code, Book, Github, Zap, CheckCircle, ExternalLink, Package, Copy, Terminal, Globe, FlaskConical, Fuel, Search, Server } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import toast from 'react-hot-toast';
 
@@ -270,7 +271,6 @@ const DevelopersPage: React.FC = () => {
   ];
 
   const comingSoon = [
-    { name: 'Faucet for Testnet', description: 'Get test tokens for development' },
     { name: 'Dev Grant Program', description: 'Funding for promising projects' },
     { name: 'Dev Console', description: 'Streamlined contract deployment' },
     { name: 'Verified Contracts', description: 'Contract verification via Ramascan' }
@@ -280,12 +280,12 @@ const DevelopersPage: React.FC = () => {
     {
       step: 1,
       title: 'Add Network to MetaMask',
-      description: 'Configure your wallet with Ramestta network settings'
+      description: 'Configure your wallet with Ramestta mainnet & testnet settings'
     },
     {
       step: 2,
       title: 'Get Test Tokens',
-      description: 'Use our faucet to get tokens for development (coming soon)'
+      description: 'Use our faucet at testnet-faucet.ramascan.com to get free test RAMA'
     },
     {
       step: 3,
@@ -316,6 +316,79 @@ const DevelopersPage: React.FC = () => {
   "blockTime": "~2 seconds",
   "consensusType": "Proof-of-Stake"
 }`;
+
+  const testnetConfigData = `{
+  "chainId": 1371,
+  "chainName": "Pingaksha Testnet",
+  "nativeCurrency": {
+    "name": "RAMA",
+    "symbol": "RAMA",
+    "decimals": 18
+  },
+  "rpcUrls": ["https://testnet.ramestta.com"],
+  "blockExplorerUrls": ["https://pingaksha.ramascan.com"],
+  "apiUrl": "https://testbackendapi.ramascan.com",
+  "faucetUrl": "https://testnet-faucet.ramascan.com",
+  "networkType": "Layer-3",
+  "blockTime": "~2 seconds",
+  "consensusType": "Proof-of-Stake"
+}`;
+
+  const [activeNetwork, setActiveNetwork] = useState<'mainnet' | 'testnet'>('mainnet');
+
+  const handleAddToMetaMask = async () => {
+    if (typeof window.ethereum === 'undefined') {
+      toast.error('MetaMask is not installed. Please install MetaMask first.');
+      window.open('https://metamask.io/download/', '_blank');
+      return;
+    }
+    try {
+      await (window as any).ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: '0x55a',
+          chainName: 'Ramestta Mainnet',
+          nativeCurrency: { name: 'RAMA', symbol: 'RAMA', decimals: 18 },
+          rpcUrls: ['https://blockchain.ramestta.com', 'https://blockchain2.ramestta.com'],
+          blockExplorerUrls: ['https://ramascan.com']
+        }]
+      });
+      toast.success('Ramestta Mainnet added to MetaMask!');
+    } catch (error: any) {
+      if (error.code === 4001) {
+        toast.error('Request rejected by user');
+      } else {
+        toast.error('Failed to add network to MetaMask');
+      }
+    }
+  };
+
+  const handleAddTestnetToMetaMask = async () => {
+    if (typeof window.ethereum === 'undefined') {
+      toast.error('MetaMask is not installed. Please install MetaMask first.');
+      window.open('https://metamask.io/download/', '_blank');
+      return;
+    }
+    try {
+      await (window as any).ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: '0x55b',
+          chainName: 'Pingaksha Testnet',
+          nativeCurrency: { name: 'RAMA', symbol: 'RAMA', decimals: 18 },
+          rpcUrls: ['https://testnet.ramestta.com'],
+          blockExplorerUrls: ['https://pingaksha.ramascan.com']
+        }]
+      });
+      toast.success('Pingaksha Testnet added to MetaMask!');
+    } catch (error: any) {
+      if (error.code === 4001) {
+        toast.error('Request rejected by user');
+      } else {
+        toast.error('Failed to add testnet to MetaMask');
+      }
+    }
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(configData).then(() => {
@@ -367,7 +440,7 @@ await posClient.init({
 
   // Cube background component
   const CubeBackground = () => (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
         <div
           key={i}
@@ -433,15 +506,13 @@ await posClient.init({
               Migrate from Polygon or Ethereum with a single RPC endpoint change — existing audits remain valid
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://docs.ramestta.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/docs?page=welcome"
                 className="btn-primary"
               >
                 <Book className="mr-2" size={20} />
                 Read Developer Docs
-              </a>
+              </Link>
               <a
                 href="https://www.npmjs.com/~ramestta"
                 target="_blank"
@@ -459,32 +530,169 @@ await posClient.init({
       {/* Network Configuration */}
       <section className="section-padding bg-black">
         <CubeBackground />
-        <div className="container-max">
+        <div className="container-max relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">Get Started in Minutes</h2>
             <p className="text-xl text-gray-300">Add Ramestta to your development environment</p>
           </div>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
+            {/* Network Tabs */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex bg-gray-800/60 rounded-xl p-1 border border-gray-700">
+                <button
+                  onClick={() => setActiveNetwork('mainnet')}
+                  className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    activeNetwork === 'mainnet'
+                      ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  🟢 Mainnet (Chain ID: 1370)
+                </button>
+                <button
+                  onClick={() => setActiveNetwork('testnet')}
+                  className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    activeNetwork === 'testnet'
+                      ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  🟡 Testnet (Chain ID: 1371)
+                </button>
+              </div>
+            </div>
+
             <div className="card p-8">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
                 <div className="feature-icon mr-3">
                   <Code className="text-white relative z-10" size={28} />
                 </div>
-                Network Configuration
+                {activeNetwork === 'mainnet' ? 'Mainnet' : 'Pingaksha Testnet'} Configuration
               </h3>
               <div className="bg-gray-950/80 rounded-lg p-6 overflow-x-auto border border-gray-700 shimmer-effect">
                 <pre className="text-green-400 text-sm">
-                  {configData}
+                  {activeNetwork === 'mainnet' ? configData : testnetConfigData}
                 </pre>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <button className="btn-primary flex-1">
-                  Add to MetaMask
+                <button
+                  onClick={activeNetwork === 'mainnet' ? handleAddToMetaMask : handleAddTestnetToMetaMask}
+                  className="btn-primary flex-1"
+                >
+                  Add {activeNetwork === 'mainnet' ? 'Mainnet' : 'Testnet'} to MetaMask
                 </button>
-                <button onClick={handleCopy} className="btn-secondary flex-1">
+                <button
+                  onClick={() => {
+                    const data = activeNetwork === 'mainnet' ? configData : testnetConfigData;
+                    navigator.clipboard.writeText(data).then(() => {
+                      toast.success(`${activeNetwork === 'mainnet' ? 'Mainnet' : 'Testnet'} configuration copied!`);
+                    }).catch(() => toast.error('Failed to copy'));
+                  }}
+                  className="btn-secondary flex-1"
+                >
+                  <Copy className="mr-2" size={16} />
                   Copy Configuration
                 </button>
               </div>
+            </div>
+
+            {/* Quick Links Grid */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {activeNetwork === 'mainnet' ? (
+                <>
+                  <a href="https://ramascan.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-primary-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <Search className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Explorer</p>
+                        <p className="text-gray-400 text-xs">ramascan.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://blockchain.ramestta.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-primary-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <Server className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">RPC</p>
+                        <p className="text-gray-400 text-xs">blockchain.ramestta.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://ramabridge.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-primary-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                        <Globe className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Bridge</p>
+                        <p className="text-gray-400 text-xs">ramabridge.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://ramaswap.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-primary-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                        <Zap className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Swap</p>
+                        <p className="text-gray-400 text-xs">ramaswap.com</p>
+                      </div>
+                    </div>
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a href="https://pingaksha.ramascan.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-yellow-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
+                        <Search className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Testnet Explorer</p>
+                        <p className="text-gray-400 text-xs">pingaksha.ramascan.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://testbackendapi.ramascan.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-yellow-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+                        <Server className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Testnet API</p>
+                        <p className="text-gray-400 text-xs">testbackendapi.ramascan.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://testnet.ramestta.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-yellow-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <Globe className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Testnet RPC</p>
+                        <p className="text-gray-400 text-xs">testnet.ramestta.com</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="https://testnet-faucet.ramascan.com" target="_blank" rel="noopener noreferrer" className="card p-4 hover:border-yellow-500/50 transition-all group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <Fuel className="text-white" size={18} />
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold text-sm">Testnet Faucet</p>
+                        <p className="text-gray-400 text-xs">Get free test RAMA</p>
+                      </div>
+                    </div>
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -745,14 +953,12 @@ await posClient.init({
               </div>
               <h3 className="text-xl font-semibold mb-4">Documentation</h3>
               <p className="text-gray-200 mb-6">Comprehensive guides and API references</p>
-              <a
-                href="https://docs.ramestta.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/docs?page=welcome"
                 className="btn-secondary"
               >
-                Read Docs <ExternalLink className="ml-2" size={16} />
-              </a>
+                Read Docs
+              </Link>
             </div>
             <div className="card p-8 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-6">
@@ -760,14 +966,12 @@ await posClient.init({
               </div>
               <h3 className="text-xl font-semibold mb-4">Setup Guide</h3>
               <p className="text-gray-200 mb-6">Step-by-step development environment setup</p>
-              <a
-                href="https://docs.ramestta.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/docs?page=environment-setup"
                 className="btn-secondary"
               >
-                Setup Guide <ExternalLink className="ml-2" size={16} />
-              </a>
+                Setup Guide
+              </Link>
             </div>
             <div className="card p-8 text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-xl flex items-center justify-center mx-auto mb-6">
